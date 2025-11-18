@@ -33,30 +33,40 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-      background: radial-gradient(circle at 0 0, #131727 0, #050608 55%);
-      color: var(--text);
-      height: 100%;
-      overscroll-behavior: none;
-    }
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  background: radial-gradient(circle at 0 0, #131727 0, #050608 55%);
+  color: var(--text);
+  height: 100%;
+  /* important : on bloque le scroll global,
+     on fera défiler l'intérieur de #app */
+  overflow: hidden;
+}
 
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: stretch;
-    }
+body {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
 
-    #app {
-      width: 100%;
-      max-width: 480px;
-      min-height: 100vh;
-      padding: 8px 10px 80px;
-      position: relative;
-      overflow: hidden;
-    }
+#app {
+  width: 100%;
+  max-width: 480px;
+  height: 100vh;              /* plein écran */
+  padding: 8px 10px 80px;     /* bottom pour laisser la place au menu */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.page-scroll {
+  flex: 1;
+  overflow-y: auto;           /* 👉 le scroll se fait ici */
+  padding-bottom: 10px;
+}
 
     /* HEADER + BANNIÈRE */
     .app-header {
@@ -756,6 +766,7 @@
 
 <body>
 <div id="app">
+   <div class="page-scroll">
   <!-- HEADER + BANNIÈRE -->
   <header class="app-header">
     <div class="brand-banner">
@@ -952,6 +963,7 @@
       </div>
     </section>
   </main>
+  </div>
 
   <!-- NAV BOTTOM -->
   <nav class="bottom-nav">
