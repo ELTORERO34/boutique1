@@ -4,18 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Mini-App Dev – Boutique</title>
+  <title>Boutique Zen – Mini-App</title>
 
-  <!-- Telegram WebApp JS (pour Telegram uniquement) -->
+  <!-- Telegram WebApp JS -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
   <style>
     :root {
       --bg: #05060a;
       --bg-alt: #0b0d15;
-      --accent: #ffb84d;
-      --accent-soft: rgba(255,184,77,0.12);
-      --accent-strong: rgba(255,184,77,0.28);
+      --accent: #71ffb5;
+      --accent-soft: rgba(113,255,181,0.12);
+      --accent-strong: rgba(113,255,181,0.3);
       --text: #f5f5f7;
       --muted: #9a9fb5;
       --danger: #ff4d6a;
@@ -66,7 +66,7 @@
       justify-content: space-between;
       padding: 10px 14px;
       border-radius: 999px;
-      background: radial-gradient(circle at 0 0, rgba(255,184,77,0.24), transparent 55%),
+      background: radial-gradient(circle at 0 0, rgba(113,255,181,0.22), transparent 60%),
                   linear-gradient(135deg, rgba(10,12,22,0.95), rgba(8,9,18,0.98));
       box-shadow: var(--shadow-soft);
       margin-bottom: 14px;
@@ -86,21 +86,19 @@
       height: 32px;
       border-radius: 12px;
       background:
-        radial-gradient(circle at 30% 0%, rgba(255,255,255,0.75), transparent 50%),
-        conic-gradient(from 210deg, #ffb84d, #ff4d6a, #7f5dff, #41d888, #ffb84d);
-      position: relative;
-      box-shadow: 0 0 18px rgba(255,184,77,0.55);
+        radial-gradient(circle at 30% 0%, rgba(255,255,255,0.8), transparent 50%),
+        conic-gradient(from 210deg, #71ffb5, #5be3ff, #7f5dff, #71ffb5);
+      box-shadow: 0 0 18px rgba(113,255,181,0.6);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
-      font-weight: 700;
+      font-size: 15px;
+      font-weight: 800;
       color: #05060a;
     }
 
     .app-logo::after {
-      content: "</>";
-      font-size: 11px;
+      content: "Z";
     }
 
     .app-title-block {
@@ -162,8 +160,8 @@
 
     .icon-btn:active {
       transform: scale(0.94);
-      background: rgba(255,184,77,0.09);
-      box-shadow: 0 0 12px rgba(255,184,77,0.4);
+      background: rgba(113,255,181,0.12);
+      box-shadow: 0 0 12px rgba(113,255,181,0.5);
     }
 
     /* NAV BOTTOM */
@@ -209,7 +207,7 @@
     }
 
     .nav-item.active {
-      background: radial-gradient(circle at 50% 0%, rgba(255,184,77,0.3), transparent 60%);
+      background: radial-gradient(circle at 50% 0%, var(--accent-strong), transparent 60%);
       color: var(--accent);
       transform: translateY(-1px);
     }
@@ -235,7 +233,7 @@
 
     /* HOME */
     .hero-card {
-      background: radial-gradient(circle at 0 0, rgba(255,184,77,0.22), transparent 60%),
+      background: radial-gradient(circle at 0 0, rgba(113,255,181,0.22), transparent 60%),
                   linear-gradient(135deg, #0f111f, #070814);
       border-radius: var(--radius-lg);
       padding: 16px 14px 14px;
@@ -289,16 +287,16 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #ffb84d, #ff7a4d);
+      background: linear-gradient(135deg, #71ffb5, #5be3ff);
       color: #05060a;
-      box-shadow: 0 10px 30px rgba(255,184,77,0.6);
+      box-shadow: 0 10px 30px rgba(113,255,181,0.6);
       flex: 1;
       justify-content: center;
     }
 
     .btn-primary:active {
       transform: translateY(1px) scale(0.98);
-      box-shadow: 0 6px 18px rgba(255,184,77,0.45);
+      box-shadow: 0 6px 18px rgba(113,255,181,0.4);
     }
 
     .btn-ghost {
@@ -311,7 +309,7 @@
 
     .btn-ghost:active {
       transform: translateY(1px) scale(0.98);
-      border-color: rgba(255,184,77,0.7);
+      border-color: var(--accent);
       color: var(--accent);
     }
 
@@ -344,12 +342,11 @@
       top: -30px;
       background:
         radial-gradient(circle at 30% 20%, rgba(255,255,255,0.8), transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(127,93,255,0.4), transparent 60%);
-      opacity: 0.35;
+        radial-gradient(circle at 50% 50%, rgba(113,255,181,0.4), transparent 60%);
+      opacity: 0.4;
       filter: blur(0.5px);
     }
 
-    /* SECTION TITLES */
     .section-header {
       display: flex;
       align-items: baseline;
@@ -456,7 +453,7 @@
     .product-card:active {
       transform: translateY(1px) scale(0.99);
       box-shadow: 0 3px 12px rgba(0,0,0,0.6);
-      border-color: rgba(255,184,77,0.5);
+      border-color: var(--accent);
     }
 
     .product-badge {
@@ -466,9 +463,9 @@
       font-size: 10px;
       padding: 3px 7px;
       border-radius: 999px;
-      background: rgba(255,184,77,0.22);
+      background: rgba(113,255,181,0.2);
       color: var(--accent);
-      border: 1px solid rgba(255,184,77,0.7);
+      border: 1px solid rgba(113,255,181,0.8);
       backdrop-filter: blur(4px);
     }
 
@@ -716,7 +713,7 @@
       gap: 6px;
     }
 
-    /* ABOUT / INFO */
+    /* ABOUT */
     .info-list {
       margin-top: 8px;
       display: flex;
@@ -779,7 +776,6 @@
       cursor: pointer;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 360px) {
       .hero-title {
         font-size: 17px;
@@ -791,1052 +787,967 @@
         border-radius: 16px;
       }
     }
-
   </style>
 </head>
 
 <body>
-  <div id="app">
-    <!-- HEADER -->
-    <header class="app-header">
-      <div class="app-brand">
-        <div class="app-logo"></div>
-        <div class="app-title-block">
-          <div class="app-title">Mini-App Dev</div>
-          <div class="app-subtitle">Template boutique multi-produits</div>
+<div id="app">
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="app-brand">
+      <div class="app-logo"></div>
+      <div class="app-title-block">
+        <div class="app-title">Boutique Zen</div>
+        <div class="app-subtitle">Mini-app bien-être naturelle</div>
+      </div>
+    </div>
+    <div class="app-actions">
+      <div class="pill">
+        <span class="pill-dot"></span>
+        <span id="tg-status">Telegram</span>
+      </div>
+      <button class="icon-btn" id="themeToggle" title="Changer de thème">🌓</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section id="view-home" class="view active">
+      <div class="hero-card">
+        <div class="hero-tag">Template boutique bien-être</div>
+        <div class="hero-title">
+          Crée une <span>boutique</span> zen<br>en quelques minutes.
+        </div>
+        <div class="hero-text">
+          Catalogue produits, panier, devis et historique déjà prêts. Tu adaptes
+          les textes et les tarifs selon ton client.
+        </div>
+        <div class="hero-actions">
+          <button class="btn btn-primary" data-nav="catalog">🧺 Voir le catalogue</button>
+          <button class="btn btn-ghost" data-nav="about">ℹ️ Infos</button>
+        </div>
+        <div class="hero-highlight">
+          <div class="hero-chip">Panier persistant</div>
+          <div class="hero-metric">+ Historique de devis intégré</div>
+        </div>
+        <div class="hero-neon-circle"></div>
+      </div>
+
+      <div class="section-header">
+        <div>
+          <div class="section-title">Sélection du moment</div>
+          <div class="section-subtitle">Exemples que tu peux modifier</div>
         </div>
       </div>
-      <div class="app-actions">
-        <div class="pill">
-          <span class="pill-dot"></span>
-          <span id="tg-status">Telegram</span>
+      <div id="home-product-preview" class="product-grid"></div>
+    </section>
+
+    <!-- CATALOGUE -->
+    <section id="view-catalog" class="view">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Catalogue</div>
+          <div class="section-subtitle">Produits, catégories et tags</div>
         </div>
-        <button class="icon-btn" id="themeToggle" title="Changer de thème">
-          🌓
-        </button>
+        <div class="small link-like" data-nav="cart">Voir le panier</div>
       </div>
-    </header>
 
-    <main>
-      <!-- VIEW HOME -->
-      <section id="view-home" class="view active">
-        <div class="hero-card">
-          <div class="hero-tag">Template premium prêt à cloner</div>
-          <div class="hero-title">
-            Crée tes <span>mini-apps</span> boutique<br/>en quelques minutes.
-          </div>
-          <div class="hero-text">
-            Catalogue, panier, devis, historique, filtres, tags, tout est déjà
-            en place. Tu n’as plus qu’à adapter pour ton client.
-          </div>
-          <div class="hero-actions">
-            <button class="btn btn-primary" data-nav="catalog">
-              🚀 Voir le catalogue
-            </button>
-            <button class="btn btn-ghost" data-nav="about">
-              ℹ️ Infos
-            </button>
-          </div>
-          <div class="hero-highlight">
-            <div class="hero-chip">Panier persistant</div>
-            <div class="hero-metric">+ Historique de devis intégré</div>
-          </div>
-          <div class="hero-neon-circle"></div>
+      <div class="toolbar">
+        <div class="search-input-wrapper">
+          <span>🔎</span>
+          <input id="searchInput" type="text" placeholder="Recherche produit, tag, mot-clé..." />
+        </div>
+        <select id="categoryFilter" class="filter-select">
+          <option value="all">Tous</option>
+        </select>
+      </div>
+
+      <div id="tagFilterRow" class="tag-row"></div>
+      <div id="catalogEmpty" class="small" style="display:none; color:var(--muted); margin:4px 2px;">
+        Aucun produit ne correspond à tes filtres.
+      </div>
+      <div id="catalogGrid" class="product-grid"></div>
+    </section>
+
+    <!-- PRODUCT DETAIL -->
+    <section id="view-product" class="view">
+      <div class="flex-row mt-8 mb-4">
+        <span class="link-like" data-nav="catalog">← Retour au catalogue</span>
+        <span class="link-like" data-nav="cart">Voir le panier</span>
+      </div>
+      <div id="productDetailCard" class="card"></div>
+    </section>
+
+    <!-- CART -->
+    <section id="view-cart" class="view">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Panier / Devis</div>
+          <div class="section-subtitle">Récapitulatif de la sélection</div>
+        </div>
+        <div class="small link-like" data-nav="catalog">+ Ajouter des produits</div>
+      </div>
+
+      <div id="cartContainer" class="card">
+        <div id="cartList" class="cart-list"></div>
+        <div id="cartEmpty" class="cart-empty" style="display:none;">
+          Ton panier est vide. Ajoute des produits depuis le catalogue.
         </div>
 
-        <div class="section-header">
-          <div>
-            <div class="section-title">Pack démo inclus</div>
-            <div class="section-subtitle">Quelques exemples que tu peux modifier</div>
+        <div class="cart-footer">
+          <div class="cart-row">
+            <span class="small">Sous-total</span>
+            <span id="cartSubtotal">0,00 €</span>
           </div>
-        </div>
-
-        <div id="home-product-preview" class="product-grid"></div>
-      </section>
-
-      <!-- VIEW CATALOGUE -->
-      <section id="view-catalog" class="view">
-        <div class="section-header">
-          <div>
-            <div class="section-title">Catalogue</div>
-            <div class="section-subtitle">Produits, tags, catégories</div>
+          <div class="cart-row">
+            <span class="small">TVA (exemple 20%)</span>
+            <span id="cartVat">0,00 €</span>
           </div>
-          <div class="small link-like" data-nav="cart">Voir le panier</div>
-        </div>
-
-        <div class="toolbar">
-          <div class="search-input-wrapper">
-            <span>🔎</span>
-            <input id="searchInput" type="text" placeholder="Recherche produit, tag, mot-clé..." />
-          </div>
-          <select id="categoryFilter" class="filter-select">
-            <option value="all">Tous</option>
-          </select>
-        </div>
-
-        <div id="tagFilterRow" class="tag-row"></div>
-        <div id="catalogEmpty" class="small" style="display:none; color:var(--muted); margin: 4px 2px;">
-          Aucun produit ne correspond à tes filtres.
-        </div>
-        <div id="catalogGrid" class="product-grid"></div>
-      </section>
-
-      <!-- VIEW PRODUCT DETAIL -->
-      <section id="view-product" class="view">
-        <div class="flex-row mt-8 mb-4">
-          <span class="link-like" data-nav="catalog">← Retour au catalogue</span>
-          <span class="link-like" data-nav="cart">Voir le panier</span>
-        </div>
-        <div id="productDetailCard" class="card">
-          <!-- Contenu rempli dynamiquement -->
-        </div>
-      </section>
-
-      <!-- VIEW CART -->
-      <section id="view-cart" class="view">
-        <div class="section-header">
-          <div>
-            <div class="section-title">Panier / Devis</div>
-            <div class="section-subtitle">Contenu actuel du panier</div>
-          </div>
-          <div class="small link-like" data-nav="catalog">+ Ajouter des produits</div>
-        </div>
-
-        <div id="cartContainer" class="card">
-          <div id="cartList" class="cart-list"></div>
-          <div id="cartEmpty" class="cart-empty" style="display:none;">
-            Ton panier est vide. Ajoute des produits depuis le catalogue.
+          <div class="cart-row">
+            <span class="small">Total</span>
+            <span class="cart-total" id="cartTotal">0,00 €</span>
           </div>
 
-          <div class="cart-footer">
-            <div class="cart-row">
-              <span class="small">Sous-total</span>
-              <span id="cartSubtotal">0,00 €</span>
-            </div>
-            <div class="cart-row">
-              <span class="small">TVA (20% – exemple)</span>
-              <span id="cartVat">0,00 €</span>
-            </div>
-            <div class="cart-row">
-              <span class="small">Total</span>
-              <span class="cart-total" id="cartTotal">0,00 €</span>
-            </div>
-
-            <div class="flex-row mt-8">
-              <button id="saveQuoteBtn" class="btn btn-primary" style="flex:1;">
-                💾 Enregistrer un devis
-              </button>
-              <button id="clearCartBtn" class="btn btn-danger">
-                🗑️ Vider
-              </button>
-            </div>
-            <div class="small muted">
-              Astuce : tu peux renommer le devis après envoi au client (dans Telegram ou ailleurs).
-            </div>
+          <div class="flex-row mt-8">
+            <button id="saveQuoteBtn" class="btn btn-primary" style="flex:1;">💾 Enregistrer un devis</button>
+            <button id="clearCartBtn" class="btn btn-danger">🗑️ Vider</button>
           </div>
-        </div>
-      </section>
-
-      <!-- VIEW QUOTES / HISTORIQUE -->
-      <section id="view-quotes" class="view">
-        <div class="section-header">
-          <div>
-            <div class="section-title">Historique des devis</div>
-            <div class="section-subtitle">Stockés en local (navigateur / app)</div>
+          <div class="small muted">
+            Astuce : tu peux renommer le devis après envoi au client (dans Telegram ou ailleurs).
           </div>
-          <div class="small link-like" id="clearAllQuotes">Tout supprimer</div>
-        </div>
-
-        <div id="quoteList" class="quote-list"></div>
-        <div id="quoteEmpty" class="cart-empty" style="display:none;">
-          Aucun devis enregistré pour le moment.
-        </div>
-      </section>
-
-      <!-- VIEW ABOUT / INFOS -->
-      <section id="view-about" class="view">
-        <div class="section-header">
-          <div>
-            <div class="section-title">Infos template</div>
-            <div class="section-subtitle">Ce que tu peux modifier pour chaque client</div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="info-list">
-            <div>
-              <div class="info-item-title">1. Branding</div>
-              <div class="muted">
-                Modifie le texte <strong>Mini-App Dev</strong>, le sous-titre, les couleurs (variables CSS),
-                et éventuellement le logo animé dans le header.
-              </div>
-            </div>
-            <div>
-              <div class="info-item-title">2. Catalogue</div>
-              <div class="muted">
-                Dans le code JS, adapte le tableau <strong>PRODUCTS</strong> : noms, prix, catégories,
-                tags, description, options (packs, variantes, etc.).
-              </div>
-            </div>
-            <div>
-              <div class="info-item-title">3. Filtres & tags</div>
-              <div class="muted">
-                Les catégories et tags se construisent automatiquement à partir des produits.
-                Tu peux les renommer comme tu veux dans <strong>PRODUCTS</strong>.
-              </div>
-            </div>
-            <div>
-              <div class="info-item-title">4. Devis & historique</div>
-              <div class="muted">
-                Les devis sont stockés dans <strong>localStorage</strong>. Tu peux changer la logique
-                d’enregistrement, ajouter un champ "nom du client", etc.
-              </div>
-            </div>
-            <div>
-              <div class="info-item-title">5. Intégration Telegram</div>
-              <div class="muted">
-                Le code détecte <strong>Telegram.WebApp</strong> si disponible. Tu peux utiliser
-                les méthodes <code>tg.MainButton</code> pour envoyer les devis à ton bot.
-              </div>
-            </div>
-          </div>
-
-          <div class="chips-row mt-10">
-            <div class="chip">SPA mono-fichier</div>
-            <div class="chip">Panier persistant</div>
-            <div class="chip">Historique devis</div>
-            <div class="chip">Recherche + tags</div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- BOTTOM NAV -->
-    <nav class="bottom-nav">
-      <div class="bottom-nav-inner">
-        <div class="nav-item active" data-nav="home">
-          <div class="nav-item-icon">🏠</div>
-          <div>Home</div>
-        </div>
-        <div class="nav-item" data-nav="catalog">
-          <div class="nav-item-icon">🛒</div>
-          <div>Catalogue</div>
-        </div>
-        <div class="nav-item" data-nav="cart">
-          <div class="nav-item-icon">🧾</div>
-          <div>Devis</div>
-        </div>
-        <div class="nav-item" data-nav="quotes">
-          <div class="nav-item-icon">📂</div>
-          <div>Historique</div>
-        </div>
-        <div class="nav-item" data-nav="about">
-          <div class="nav-item-icon">⚙️</div>
-          <div>Infos</div>
         </div>
       </div>
-    </nav>
-  </div>
+    </section>
 
-  <script>
-    /************************************************************
-     * 1. CONFIG PRODUITS – À ADAPTER POUR CHAQUE CLIENT
-     ************************************************************/
-    const PRODUCTS = [
-      {
-        id: "site-vitrine",
-        name: "Site vitrine premium",
-        category: "Sites web",
-        price: 790,
-        popular: true,
-        tags: ["site", "vitrine", "business", "responsive"],
-        description: "Site vitrine complet (jusqu’à 5 pages) pour présenter l’activité du client, avec formulaire de contact et intégration réseaux sociaux.",
-        details: [
-          "Design responsive mobile-first",
-          "Optimisation SEO basique",
-          "Page contact avec formulaire",
-          "Intégration Google Maps et réseaux sociaux",
-          "Installation sur l’hébergement du client"
-        ],
-        options: [
-          "Option blog",
-          "Option multilingue",
-          "Option pack visuels"
-        ]
-      },
-      {
-        id: "miniapp-catalogue",
-        name: "Mini-App Telegram Catalogue",
-        category: "Mini-apps",
-        price: 390,
-        popular: true,
-        tags: ["telegram", "catalogue", "mini-app", "bot"],
-        description: "Mini-app Telegram pour présenter un catalogue de produits / services, avec panier et gestion de devis.",
-        details: [
-          "Liste de produits avec catégories et tags",
-          "Panier persistant côté utilisateur",
-          "Enregistrement de devis",
-          "Intégration avec bot Telegram (personnalisable)"
-        ],
-        options: [
-          "Connexion à un CRM",
-          "Export CSV des devis",
-          "Design personnalisé"
-        ]
-      },
-      {
-        id: "ecommerce-light",
-        name: "E-commerce light",
-        category: "Sites web",
-        price: 1190,
-        popular: false,
-        tags: ["ecommerce", "paiement", "stripe"],
-        description: "Boutique en ligne simple pour vendre quelques produits avec paiement en ligne (Stripe / autre).",
-        details: [
-          "Gestion basique du catalogue",
-          "Intégration d’un module de paiement",
-          "Pages légales incluses",
-          "Gestion des frais de livraison simple"
-        ],
-        options: [
-          "Intégration modules de transport",
-          "Thème graphique sur mesure"
-        ]
-      },
-      {
-        id: "landing-page",
-        name: "Landing page conversion",
-        category: "Landing pages",
-        price: 490,
-        popular: false,
-        tags: ["landing", "pub", "ads", "conversion"],
-        description: "Landing page optimisée pour la conversion (campagnes pub, lancement de produit, collecte de leads).",
-        details: [
-          "Sections copywriting optimisées",
-          "Formulaire connecté (emailing / CRM)",
-          "Suivi statistiques (Google Analytics / autre)"
-        ],
-        options: [
-          "Création de contenu (textes + visuels)",
-          "Test A/B de variantes"
-        ]
-      },
-      {
-        id: "pack-maintenance",
-        name: "Pack maintenance annuelle",
-        category: "Maintenance",
-        price: 290,
-        popular: false,
-        tags: ["maintenance", "support", "sécurité"],
-        description: "Pack maintenance pour assurer le suivi du site ou de la mini-app (mise à jour, sécurité, sauvegardes).",
-        details: [
-          "Mises à jour techniques",
-          "Surveillance de la disponibilité",
-          "Sauvegardes régulières",
-          "Support par mail / Telegram"
-        ],
-        options: [
-          "Support prioritaire",
-          "Ajout d’heures de développement"
-        ]
+    <!-- QUOTES -->
+    <section id="view-quotes" class="view">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Historique des devis</div>
+          <div class="section-subtitle">Stockés en local sur l’appareil</div>
+        </div>
+        <div class="small link-like" id="clearAllQuotes">Tout supprimer</div>
+      </div>
+
+      <div id="quoteList" class="quote-list"></div>
+      <div id="quoteEmpty" class="cart-empty" style="display:none;">
+        Aucun devis enregistré pour le moment.
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="view-about" class="view">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Infos template</div>
+          <div class="section-subtitle">Ce que tu peux modifier pour ton client</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="info-list">
+          <div>
+            <div class="info-item-title">1. Branding</div>
+            <div class="muted">
+              Modifie le nom <strong>Boutique Zen</strong>, le sous-titre, les couleurs (variables CSS),
+              ou ajoute un logo perso en haut.
+            </div>
+          </div>
+          <div>
+            <div class="info-item-title">2. Catalogue</div>
+            <div class="muted">
+              Adapte le tableau <strong>PRODUCTS</strong> dans le JavaScript : noms, descriptions,
+              prix, catégories, tags, packs, etc.
+            </div>
+          </div>
+          <div>
+            <div class="info-item-title">3. Filtres & Tags</div>
+            <div class="muted">
+              Les catégories et tags se génèrent automatiquement en fonction des produits.
+              Tu peux tout renommer dans <strong>PRODUCTS</strong>.
+            </div>
+          </div>
+          <div>
+            <div class="info-item-title">4. Devis & historique</div>
+            <div class="muted">
+              Les devis sont stockés dans <strong>localStorage</strong>. Tu peux ajouter un champ
+              “nom du client” ou un statut si besoin.
+            </div>
+          </div>
+          <div>
+            <div class="info-item-title">5. Intégration Telegram</div>
+            <div class="muted">
+              La mini-app détecte <strong>Telegram.WebApp</strong>. Tu peux ensuite connecter
+              un bot pour recevoir les devis et les commandes.
+            </div>
+          </div>
+        </div>
+
+        <div class="chips-row mt-10">
+          <div class="chip">SPA mono-fichier</div>
+          <div class="chip">Panier persistant</div>
+          <div class="chip">Historique devis</div>
+          <div class="chip">Recherche + tags</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- NAV BOTTOM -->
+  <nav class="bottom-nav">
+    <div class="bottom-nav-inner">
+      <div class="nav-item active" data-nav="home">
+        <div class="nav-item-icon">🏠</div>
+        <div>Home</div>
+      </div>
+      <div class="nav-item" data-nav="catalog">
+        <div class="nav-item-icon">🧺</div>
+        <div>Catalogue</div>
+      </div>
+      <div class="nav-item" data-nav="cart">
+        <div class="nav-item-icon">🧾</div>
+        <div>Devis</div>
+      </div>
+      <div class="nav-item" data-nav="quotes">
+        <div class="nav-item-icon">📂</div>
+        <div>Historique</div>
+      </div>
+      <div class="nav-item" data-nav="about">
+        <div class="nav-item-icon">⚙️</div>
+        <div>Infos</div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<script>
+  /**********************
+   * PRODUITS EXEMPLE
+   **********************/
+  const PRODUCTS = [
+    {
+      id: "huile-detente",
+      name: "Huile détente 10 ml",
+      category: "Huiles",
+      price: 24.9,
+      popular: true,
+      tags: ["relax", "huile", "zen"],
+      description: "Huile bien-être pour un moment de relaxation en fin de journée.",
+      details: [
+        "Format 10 ml",
+        "Utilisation ponctuelle",
+        "Convient pour une routine détente"
+      ],
+      options: [
+        "Format 30 ml",
+        "Pack 3 flacons"
+      ]
+    },
+    {
+      id: "infusion-nuit-calme",
+      name: "Infusion Nuit Calme",
+      category: "Infusions",
+      price: 14.9,
+      popular: true,
+      tags: ["nuit", "infusion", "douceur"],
+      description: "Mélange de plantes pour accompagner le coucher dans une ambiance apaisée.",
+      details: [
+        "Sachet 100 g",
+        "À consommer le soir",
+        "Peut s’intégrer dans une routine sommeil"
+      ],
+      options: [
+        "Pack 3 sachets",
+        "Pack découverte infusions"
+      ]
+    },
+    {
+      id: "baume-corporel",
+      name: "Baume corporel relax",
+      category: "Soins",
+      price: 19.9,
+      popular: false,
+      tags: ["soin", "corps", "peau"],
+      description: "Baume pour le corps à utiliser lors d’un massage ou après la douche.",
+      details: [
+        "Texture onctueuse",
+        "À appliquer sur peau propre",
+        "Idéal pour une pause bien-être"
+      ],
+      options: [
+        "Format voyage",
+        "Pack duo corps & mains"
+      ]
+    },
+    {
+      id: "spray-ambiance",
+      name: "Spray ambiance zen",
+      category: "Ambiance",
+      price: 17.5,
+      popular: false,
+      tags: ["maison", "ambiance", "zen"],
+      description: "Spray d’ambiance pour créer une atmosphère douce et reposante.",
+      details: [
+        "Flacon spray 100 ml",
+        "Utilisation dans les pièces de vie",
+        "Parfait pour accompagner une séance de détente"
+      ],
+      options: [
+        "Pack 3 senteurs",
+        "Abonnement mensuel ambiance"
+      ]
+    },
+    {
+      id: "pack-rituel",
+      name: "Pack rituel sérénité",
+      category: "Packs",
+      price: 59.9,
+      popular: true,
+      tags: ["pack", "routine", "rituel"],
+      description: "Coffret regroupant plusieurs produits pour un rituel bien-être complet.",
+      details: [
+        "Huile détente",
+        "Infusion Nuit Calme",
+        "Spray ambiance zen",
+        "Guide de rituel inclus"
+      ],
+      options: [
+        "Version découverte",
+        "Version premium avec accessoires"
+      ]
+    }
+  ];
+
+  const STORAGE_KEYS = {
+    CART: "boutiquezen_cart_v1",
+    QUOTES: "boutiquezen_quotes_v1",
+    THEME: "boutiquezen_theme_v1"
+  };
+
+  let cart = [];
+  let quotes = [];
+  let currentProductId = null;
+
+  function formatPrice(value) {
+    return value.toLocaleString("fr-FR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }) + " €";
+  }
+
+  function loadStorage() {
+    try {
+      const storedCart = JSON.parse(localStorage.getItem(STORAGE_KEYS.CART) || "[]");
+      const storedQuotes = JSON.parse(localStorage.getItem(STORAGE_KEYS.QUOTES) || "[]");
+      const storedTheme = localStorage.getItem(STORAGE_KEYS.THEME);
+
+      cart = Array.isArray(storedCart) ? storedCart : [];
+      quotes = Array.isArray(storedQuotes) ? storedQuotes : [];
+
+      if (storedTheme) {
+        document.documentElement.setAttribute("data-theme", storedTheme);
       }
-    ];
-
-    const STORAGE_KEYS = {
-      CART: "miniapp_cart_v1",
-      QUOTES: "miniapp_quotes_v1",
-      THEME: "miniapp_theme_v1"
-    };
-
-    let cart = [];
-    let quotes = [];
-    let currentProductId = null;
-
-    /************************************************************
-     * 2. OUTILS – FORMATAGE ET STORAGE
-     ************************************************************/
-    function formatPrice(value) {
-      return value.toLocaleString("fr-FR", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }) + " €";
+    } catch (e) {
+      console.warn("Erreur lecture storage", e);
     }
+  }
 
-    function loadStorage() {
-      try {
-        const storedCart = JSON.parse(localStorage.getItem(STORAGE_KEYS.CART) || "[]");
-        const storedQuotes = JSON.parse(localStorage.getItem(STORAGE_KEYS.QUOTES) || "[]");
-        const storedTheme = localStorage.getItem(STORAGE_KEYS.THEME);
+  function saveCart() {
+    localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart));
+  }
 
-        cart = Array.isArray(storedCart) ? storedCart : [];
-        quotes = Array.isArray(storedQuotes) ? storedQuotes : [];
+  function saveQuotes() {
+    localStorage.setItem(STORAGE_KEYS.QUOTES, JSON.stringify(quotes));
+  }
 
-        if (storedTheme) {
-          document.documentElement.setAttribute("data-theme", storedTheme);
-        }
-      } catch (e) {
-        console.warn("Erreur lecture storage", e);
+  function saveTheme(theme) {
+    localStorage.setItem(STORAGE_KEYS.THEME, theme);
+  }
+
+  /* NAVIGATION */
+  function showView(viewId) {
+    document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
+    const target = document.getElementById("view-" + viewId);
+    if (target) target.classList.add("active");
+
+    document.querySelectorAll(".nav-item").forEach(item => {
+      item.classList.toggle("active", item.dataset.nav === viewId);
+    });
+  }
+
+  function setupNavigation() {
+    document.querySelectorAll("[data-nav]").forEach(el => {
+      el.addEventListener("click", () => showView(el.dataset.nav));
+    });
+  }
+
+  /* CATALOGUE / TAGS */
+  function getAllCategories() {
+    const set = new Set(PRODUCTS.map(p => p.category));
+    return Array.from(set).sort();
+  }
+
+  function getAllTags() {
+    const set = new Set();
+    PRODUCTS.forEach(p => (p.tags || []).forEach(t => set.add(t)));
+    return Array.from(set).sort();
+  }
+
+  function renderCategoryFilter() {
+    const select = document.getElementById("categoryFilter");
+    const cats = getAllCategories();
+    cats.forEach(cat => {
+      const option = document.createElement("option");
+      option.value = cat;
+      option.textContent = cat;
+      select.appendChild(option);
+    });
+  }
+
+  function renderTagFilter() {
+    const wrapper = document.getElementById("tagFilterRow");
+    wrapper.innerHTML = "";
+    const tags = getAllTags();
+    tags.forEach(tag => {
+      const span = document.createElement("span");
+      span.className = "tag-pill";
+      span.textContent = "#" + tag;
+      span.dataset.tag = tag;
+      span.addEventListener("click", () => {
+        span.classList.toggle("active");
+        renderCatalog();
+      });
+      wrapper.appendChild(span);
+    });
+  }
+
+  function getActiveTags() {
+    return Array.from(document.querySelectorAll(".tag-pill.active")).map(el => el.dataset.tag);
+  }
+
+  function renderCatalog() {
+    const grid = document.getElementById("catalogGrid");
+    const emptyMsg = document.getElementById("catalogEmpty");
+    grid.innerHTML = "";
+
+    const searchTerm = document.getElementById("searchInput").value.toLowerCase().trim();
+    const categoryFilter = document.getElementById("categoryFilter").value;
+    const activeTags = getActiveTags();
+
+    let filtered = PRODUCTS.filter(p => {
+      let ok = true;
+
+      if (categoryFilter !== "all" && p.category !== categoryFilter) ok = false;
+
+      if (activeTags.length > 0) {
+        const pTags = p.tags || [];
+        if (!activeTags.every(t => pTags.includes(t))) ok = false;
       }
-    }
 
-    function saveCart() {
-      localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(cart));
-    }
-
-    function saveQuotes() {
-      localStorage.setItem(STORAGE_KEYS.QUOTES, JSON.stringify(quotes));
-    }
-
-    function saveTheme(theme) {
-      localStorage.setItem(STORAGE_KEYS.THEME, theme);
-    }
-
-    /************************************************************
-     * 3. NAVIGATION ENTRE VUES
-     ************************************************************/
-    function showView(viewId) {
-      document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
-      const target = document.getElementById("view-" + viewId);
-      if (target) {
-        target.classList.add("active");
+      if (searchTerm) {
+        const haystack = (p.name + " " + p.description + " " + p.category + " " + (p.tags || []).join(" ")).toLowerCase();
+        if (!haystack.includes(searchTerm)) ok = false;
       }
 
-      document.querySelectorAll(".nav-item").forEach(item => {
-        item.classList.toggle("active", item.dataset.nav === viewId);
-      });
+      return ok;
+    });
+
+    if (filtered.length === 0) {
+      emptyMsg.style.display = "block";
+      return;
     }
+    emptyMsg.style.display = "none";
 
-    function setupNavigation() {
-      document.querySelectorAll("[data-nav]").forEach(el => {
-        el.addEventListener("click", () => {
-          const view = el.dataset.nav;
-          showView(view);
-        });
-      });
-    }
+    filtered.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.addEventListener("click", () => openProductDetail(p.id));
 
-    /************************************************************
-     * 4. RENDU CATALOGUE / HOME
-     ************************************************************/
-    function getAllCategories() {
-      const set = new Set(PRODUCTS.map(p => p.category));
-      return Array.from(set).sort();
-    }
-
-    function getAllTags() {
-      const set = new Set();
-      PRODUCTS.forEach(p => (p.tags || []).forEach(t => set.add(t)));
-      return Array.from(set).sort();
-    }
-
-    function renderCategoryFilter() {
-      const select = document.getElementById("categoryFilter");
-      const categories = getAllCategories();
-      categories.forEach(cat => {
-        const option = document.createElement("option");
-        option.value = cat;
-        option.textContent = cat;
-        select.appendChild(option);
-      });
-    }
-
-    function renderTagFilter() {
-      const wrapper = document.getElementById("tagFilterRow");
-      wrapper.innerHTML = "";
-
-      const tags = getAllTags();
-      tags.forEach(tag => {
-        const span = document.createElement("span");
-        span.className = "tag-pill";
-        span.textContent = "#" + tag;
-        span.dataset.tag = tag;
-        span.addEventListener("click", () => {
-          span.classList.toggle("active");
-          renderCatalog();
-        });
-        wrapper.appendChild(span);
-      });
-    }
-
-    function getActiveTags() {
-      return Array.from(document.querySelectorAll(".tag-pill.active")).map(
-        el => el.dataset.tag
-      );
-    }
-
-    function renderCatalog() {
-      const grid = document.getElementById("catalogGrid");
-      const emptyMsg = document.getElementById("catalogEmpty");
-      grid.innerHTML = "";
-
-      const searchTerm = document.getElementById("searchInput").value.toLowerCase().trim();
-      const categoryFilter = document.getElementById("categoryFilter").value;
-      const activeTags = getActiveTags();
-
-      let filtered = PRODUCTS.filter(p => {
-        let ok = true;
-
-        if (categoryFilter !== "all" && p.category !== categoryFilter) {
-          ok = false;
-        }
-
-        if (activeTags.length > 0) {
-          const pTags = p.tags || [];
-          if (!activeTags.every(t => pTags.includes(t))) {
-            ok = false;
-          }
-        }
-
-        if (searchTerm) {
-          const haystack = (
-            p.name + " " +
-            p.description + " " +
-            (p.category || "") + " " +
-            (p.tags || []).join(" ")
-          ).toLowerCase();
-          if (!haystack.includes(searchTerm)) {
-            ok = false;
-          }
-        }
-
-        return ok;
-      });
-
-      if (filtered.length === 0) {
-        emptyMsg.style.display = "block";
-        return;
+      if (p.popular) {
+        const badge = document.createElement("div");
+        badge.className = "product-badge";
+        badge.textContent = "Populaire";
+        card.appendChild(badge);
       }
-      emptyMsg.style.display = "none";
 
-      filtered.forEach(p => {
-        const card = document.createElement("div");
-        card.className = "product-card";
-        card.addEventListener("click", () => openProductDetail(p.id));
+      const nameEl = document.createElement("div");
+      nameEl.className = "product-name";
+      nameEl.textContent = p.name;
 
-        if (p.popular) {
-          const badge = document.createElement("div");
-          badge.className = "product-badge";
-          badge.textContent = "Best-seller";
-          card.appendChild(badge);
-        }
+      const catEl = document.createElement("div");
+      catEl.className = "product-category";
+      catEl.textContent = p.category;
 
-        const nameEl = document.createElement("div");
-        nameEl.className = "product-name";
-        nameEl.textContent = p.name;
+      const priceRow = document.createElement("div");
+      priceRow.className = "product-price-row";
 
-        const categoryEl = document.createElement("div");
-        categoryEl.className = "product-category";
-        categoryEl.textContent = p.category;
+      const priceEl = document.createElement("div");
+      priceEl.className = "product-price";
+      priceEl.textContent = formatPrice(p.price);
 
-        const priceRow = document.createElement("div");
-        priceRow.className = "product-price-row";
+      const metaEl = document.createElement("div");
+      metaEl.className = "product-meta";
+      metaEl.textContent = p.tags && p.tags.length ? "#" + p.tags[0] : "";
 
-        const priceEl = document.createElement("div");
-        priceEl.className = "product-price";
-        priceEl.textContent = formatPrice(p.price);
+      priceRow.appendChild(priceEl);
+      priceRow.appendChild(metaEl);
 
-        const metaEl = document.createElement("div");
-        metaEl.className = "product-meta";
-        metaEl.textContent = p.tags && p.tags.length ? "#" + p.tags[0] : "";
+      card.appendChild(nameEl);
+      card.appendChild(catEl);
+      card.appendChild(priceRow);
 
-        priceRow.appendChild(priceEl);
-        priceRow.appendChild(metaEl);
+      grid.appendChild(card);
+    });
+  }
 
-        card.appendChild(nameEl);
-        card.appendChild(categoryEl);
-        card.appendChild(priceRow);
+  function renderHomePreview() {
+    const container = document.getElementById("home-product-preview");
+    container.innerHTML = "";
+    const selection = PRODUCTS.slice(0, 4);
+    selection.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.addEventListener("click", () => openProductDetail(p.id));
 
-        grid.appendChild(card);
+      if (p.popular) {
+        const badge = document.createElement("div");
+        badge.className = "product-badge";
+        badge.textContent = "Populaire";
+        card.appendChild(badge);
+      }
+
+      const nameEl = document.createElement("div");
+      nameEl.className = "product-name";
+      nameEl.textContent = p.name;
+
+      const catEl = document.createElement("div");
+      catEl.className = "product-category";
+      catEl.textContent = p.category;
+
+      const priceRow = document.createElement("div");
+      priceRow.className = "product-price-row";
+
+      const priceEl = document.createElement("div");
+      priceEl.className = "product-price";
+      priceEl.textContent = formatPrice(p.price);
+
+      const metaEl = document.createElement("div");
+      metaEl.className = "product-meta";
+      metaEl.textContent = p.tags && p.tags.length ? "#" + p.tags[0] : "";
+
+      priceRow.appendChild(priceEl);
+      priceRow.appendChild(metaEl);
+
+      card.appendChild(nameEl);
+      card.appendChild(catEl);
+      card.appendChild(priceRow);
+
+      container.appendChild(card);
+    });
+  }
+
+  /* FICHE PRODUIT */
+  function openProductDetail(productId) {
+    const product = PRODUCTS.find(p => p.id === productId);
+    if (!product) return;
+    currentProductId = productId;
+
+    const card = document.getElementById("productDetailCard");
+    card.innerHTML = "";
+
+    const header = document.createElement("div");
+    header.className = "product-detail-header";
+
+    const left = document.createElement("div");
+    const title = document.createElement("div");
+    title.className = "product-detail-title";
+    title.textContent = product.name;
+
+    const cat = document.createElement("div");
+    cat.className = "muted";
+    cat.textContent = product.category;
+
+    left.appendChild(title);
+    left.appendChild(cat);
+
+    const right = document.createElement("div");
+    if (product.popular) {
+      const badge = document.createElement("div");
+      badge.className = "badge";
+      badge.textContent = "Best-seller";
+      right.appendChild(badge);
+    }
+
+    header.appendChild(left);
+    header.appendChild(right);
+
+    const price = document.createElement("div");
+    price.className = "product-detail-price";
+    price.textContent = formatPrice(product.price);
+
+    const desc = document.createElement("div");
+    desc.className = "muted";
+    desc.textContent = product.description;
+
+    const tagsRow = document.createElement("div");
+    tagsRow.className = "pill-row";
+    (product.tags || []).forEach(t => {
+      const pill = document.createElement("div");
+      pill.className = "small-pill";
+      pill.textContent = "#" + t;
+      tagsRow.appendChild(pill);
+    });
+
+    const detailsList = document.createElement("div");
+    detailsList.className = "mt-8";
+    if (product.details && product.details.length) {
+      const titleDetails = document.createElement("div");
+      titleDetails.className = "small";
+      titleDetails.textContent = "Comprend :";
+      detailsList.appendChild(titleDetails);
+      product.details.forEach(d => {
+        const row = document.createElement("div");
+        row.className = "small muted";
+        row.textContent = "• " + d;
+        detailsList.appendChild(row);
       });
     }
 
-    function renderHomePreview() {
-      const container = document.getElementById("home-product-preview");
-      container.innerHTML = "";
-
-      const selection = PRODUCTS.slice(0, 4);
-      selection.forEach(p => {
-        const card = document.createElement("div");
-        card.className = "product-card";
-        card.addEventListener("click", () => {
-          openProductDetail(p.id);
-        });
-
-        if (p.popular) {
-          const badge = document.createElement("div");
-          badge.className = "product-badge";
-          badge.textContent = "Populaire";
-          card.appendChild(badge);
-        }
-
-        const nameEl = document.createElement("div");
-        nameEl.className = "product-name";
-        nameEl.textContent = p.name;
-
-        const categoryEl = document.createElement("div");
-        categoryEl.className = "product-category";
-        categoryEl.textContent = p.category;
-
-        const priceRow = document.createElement("div");
-        priceRow.className = "product-price-row";
-
-        const priceEl = document.createElement("div");
-        priceEl.className = "product-price";
-        priceEl.textContent = formatPrice(p.price);
-
-        const metaEl = document.createElement("div");
-        metaEl.className = "product-meta";
-        metaEl.textContent = p.tags && p.tags.length ? "#" + p.tags[0] : "";
-
-        priceRow.appendChild(priceEl);
-        priceRow.appendChild(metaEl);
-
-        card.appendChild(nameEl);
-        card.appendChild(categoryEl);
-        card.appendChild(priceRow);
-
-        container.appendChild(card);
+    const optionsList = document.createElement("div");
+    optionsList.className = "mt-8";
+    if (product.options && product.options.length) {
+      const titleOptions = document.createElement("div");
+      titleOptions.className = "small";
+      titleOptions.textContent = "Options possibles :";
+      optionsList.appendChild(titleOptions);
+      product.options.forEach(o => {
+        const row = document.createElement("div");
+        row.className = "small muted";
+        row.textContent = "◦ " + o;
+        optionsList.appendChild(row);
       });
     }
 
-    /************************************************************
-     * 5. FICHE PRODUIT
-     ************************************************************/
-    function openProductDetail(productId) {
-      const product = PRODUCTS.find(p => p.id === productId);
+    const actionsRow = document.createElement("div");
+    actionsRow.className = "flex-row mt-12";
+    const addBtn = document.createElement("button");
+    addBtn.className = "btn btn-primary";
+    addBtn.style.flex = "1";
+    addBtn.textContent = "Ajouter au panier";
+    addBtn.addEventListener("click", () => addToCart(product.id));
+
+    const backBtn = document.createElement("button");
+    backBtn.className = "btn btn-ghost";
+    backBtn.textContent = "Catalogue";
+    backBtn.addEventListener("click", () => showView("catalog"));
+
+    actionsRow.appendChild(addBtn);
+    actionsRow.appendChild(backBtn);
+
+    card.appendChild(header);
+    card.appendChild(price);
+    card.appendChild(desc);
+    card.appendChild(tagsRow);
+    card.appendChild(detailsList);
+    card.appendChild(optionsList);
+    card.appendChild(actionsRow);
+
+    showView("product");
+  }
+
+  /* PANIER */
+  function addToCart(productId) {
+    const existing = cart.find(item => item.id === productId);
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({ id: productId, qty: 1 });
+    }
+    saveCart();
+    renderCart();
+  }
+
+  function updateCartQty(productId, delta) {
+    const idx = cart.findIndex(item => item.id === productId);
+    if (idx === -1) return;
+    cart[idx].qty += delta;
+    if (cart[idx].qty <= 0) {
+      cart.splice(idx, 1);
+    }
+    saveCart();
+    renderCart();
+  }
+
+  function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    saveCart();
+    renderCart();
+  }
+
+  function clearCart() {
+    cart = [];
+    saveCart();
+    renderCart();
+  }
+
+  function computeCartTotals() {
+    let subtotal = 0;
+    cart.forEach(item => {
+      const product = PRODUCTS.find(p => p.id === item.id);
       if (!product) return;
-      currentProductId = productId;
+      subtotal += product.price * item.qty;
+    });
+    const vat = subtotal * 0.2;
+    const total = subtotal + vat;
+    return { subtotal, vat, total };
+  }
 
-      const card = document.getElementById("productDetailCard");
-      card.innerHTML = "";
+  function renderCart() {
+    const list = document.getElementById("cartList");
+    const emptyMsg = document.getElementById("cartEmpty");
+    list.innerHTML = "";
 
-      const header = document.createElement("div");
-      header.className = "product-detail-header";
+    if (cart.length === 0) {
+      emptyMsg.style.display = "block";
+    } else {
+      emptyMsg.style.display = "none";
+    }
 
-      const left = document.createElement("div");
+    cart.forEach(item => {
+      const product = PRODUCTS.find(p => p.id === item.id);
+      if (!product) return;
+
+      const row = document.createElement("div");
+      row.className = "cart-item";
+
+      const main = document.createElement("div");
+      main.className = "cart-item-main";
+
       const title = document.createElement("div");
-      title.className = "product-detail-title";
+      title.className = "cart-item-title";
       title.textContent = product.name;
 
-      const cat = document.createElement("div");
-      cat.className = "muted";
-      cat.textContent = product.category;
+      const meta = document.createElement("div");
+      meta.className = "cart-item-meta";
+      meta.textContent = formatPrice(product.price) + " / unité";
 
-      left.appendChild(title);
-      left.appendChild(cat);
+      main.appendChild(title);
+      main.appendChild(meta);
 
-      const right = document.createElement("div");
-      if (product.popular) {
-        const badge = document.createElement("div");
-        badge.className = "badge";
-        badge.textContent = "Best-seller";
-        right.appendChild(badge);
-      }
+      const actions = document.createElement("div");
+      actions.className = "cart-item-actions";
 
-      header.appendChild(left);
-      header.appendChild(right);
+      const qtyControl = document.createElement("div");
+      qtyControl.className = "qty-control";
 
-      const price = document.createElement("div");
-      price.className = "product-detail-price";
-      price.textContent = formatPrice(product.price);
+      const minus = document.createElement("button");
+      minus.className = "qty-btn";
+      minus.textContent = "−";
+      minus.addEventListener("click", () => updateCartQty(product.id, -1));
 
-      const desc = document.createElement("div");
-      desc.className = "muted";
-      desc.textContent = product.description;
+      const qtyValue = document.createElement("div");
+      qtyValue.className = "qty-value";
+      qtyValue.textContent = item.qty;
+
+      const plus = document.createElement("button");
+      plus.className = "qty-btn";
+      plus.textContent = "+";
+      plus.addEventListener("click", () => updateCartQty(product.id, 1));
+
+      qtyControl.appendChild(minus);
+      qtyControl.appendChild(qtyValue);
+      qtyControl.appendChild(plus);
+
+      const linePrice = document.createElement("div");
+      linePrice.className = "small";
+      linePrice.textContent = formatPrice(product.price * item.qty);
+
+      const remove = document.createElement("div");
+      remove.className = "badge-danger";
+      remove.textContent = "Supprimer";
+      remove.addEventListener("click", () => removeFromCart(product.id));
+
+      actions.appendChild(qtyControl);
+      actions.appendChild(linePrice);
+      actions.appendChild(remove);
+
+      row.appendChild(main);
+      row.appendChild(actions);
+      list.appendChild(row);
+    });
+
+    const totals = computeCartTotals();
+    document.getElementById("cartSubtotal").textContent = formatPrice(totals.subtotal);
+    document.getElementById("cartVat").textContent = formatPrice(totals.vat);
+    document.getElementById("cartTotal").textContent = formatPrice(totals.total);
+  }
+
+  /* DEVIS / HISTORIQUE */
+  function saveQuote() {
+    if (cart.length === 0) return;
+    const totals = computeCartTotals();
+    const timestamp = new Date().toISOString();
+
+    const quote = {
+      id: "Q" + Date.now(),
+      items: cart.map(i => ({ ...i })),
+      totals,
+      createdAt: timestamp
+    };
+
+    quotes.unshift(quote);
+    saveQuotes();
+    renderQuotes();
+  }
+
+  function deleteQuote(id) {
+    quotes = quotes.filter(q => q.id !== id);
+    saveQuotes();
+    renderQuotes();
+  }
+
+  function clearAllQuotes() {
+    if (!confirm("Supprimer tous les devis enregistrés ?")) return;
+    quotes = [];
+    saveQuotes();
+    renderQuotes();
+  }
+
+  function formatDateFr(dateStr) {
+    const d = new Date(dateStr);
+    return d.toLocaleString("fr-FR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+  }
+
+  function renderQuotes() {
+    const list = document.getElementById("quoteList");
+    const emptyMsg = document.getElementById("quoteEmpty");
+    list.innerHTML = "";
+
+    if (quotes.length === 0) {
+      emptyMsg.style.display = "block";
+      return;
+    }
+    emptyMsg.style.display = "none";
+
+    quotes.forEach(q => {
+      const card = document.createElement("div");
+      card.className = "quote-card";
+
+      const header = document.createElement("div");
+      header.className = "quote-header";
+
+      const title = document.createElement("div");
+      title.className = "quote-title";
+      title.textContent = q.id;
+
+      const meta = document.createElement("div");
+      meta.className = "quote-meta";
+      meta.textContent = formatDateFr(q.createdAt);
+
+      header.appendChild(title);
+      header.appendChild(meta);
+
+      const content = document.createElement("div");
+      content.className = "quote-meta";
+      const names = q.items.map(item => {
+        const product = PRODUCTS.find(p => p.id === item.id);
+        return product ? product.name + " x" + item.qty : "(inconnu)";
+      }).join(" · ");
+      content.textContent = names || "(Panier vide)";
+
+      const totalRow = document.createElement("div");
+      totalRow.className = "flex-between mt-8 small";
+      const label = document.createElement("span");
+      label.textContent = "Total TTC (exemple)";
+      const totalValue = document.createElement("span");
+      totalValue.textContent = formatPrice(q.totals.total);
+      totalRow.appendChild(label);
+      totalRow.appendChild(totalValue);
 
       const tagsRow = document.createElement("div");
-      tagsRow.className = "pill-row";
-      (product.tags || []).forEach(t => {
-        const pill = document.createElement("div");
-        pill.className = "small-pill";
-        pill.textContent = "#" + t;
-        tagsRow.appendChild(pill);
+      tagsRow.className = "quote-tags";
+      q.items.slice(0, 5).forEach(item => {
+        const product = PRODUCTS.find(p => p.id === item.id);
+        if (!product) return;
+        const tag = document.createElement("div");
+        tag.className = "quote-tag";
+        tag.textContent = (product.category || "Produit") + " x" + item.qty;
+        tagsRow.appendChild(tag);
       });
 
-      const detailsList = document.createElement("div");
-      detailsList.className = "mt-8";
-      if (product.details && product.details.length) {
-        const titleDetails = document.createElement("div");
-        titleDetails.className = "small";
-        titleDetails.textContent = "Comprend par défaut :";
-        detailsList.appendChild(titleDetails);
-
-        product.details.forEach(d => {
-          const row = document.createElement("div");
-          row.className = "small muted";
-          row.textContent = "• " + d;
-          detailsList.appendChild(row);
-        });
-      }
-
-      const optionsList = document.createElement("div");
-      optionsList.className = "mt-8";
-      if (product.options && product.options.length) {
-        const titleOptions = document.createElement("div");
-        titleOptions.className = "small";
-        titleOptions.textContent = "Options possibles :";
-        optionsList.appendChild(titleOptions);
-
-        product.options.forEach(o => {
-          const row = document.createElement("div");
-          row.className = "small muted";
-          row.textContent = "◦ " + o;
-          optionsList.appendChild(row);
-        });
-      }
-
-      const actionsRow = document.createElement("div");
-      actionsRow.className = "flex-row mt-12";
-      const addBtn = document.createElement("button");
-      addBtn.className = "btn btn-primary";
-      addBtn.style.flex = "1";
-      addBtn.textContent = "Ajouter au panier";
-
-      addBtn.addEventListener("click", () => {
-        addToCart(product.id);
-      });
-
-      const backBtn = document.createElement("button");
-      backBtn.className = "btn btn-ghost";
-      backBtn.textContent = "Catalogue";
-      backBtn.addEventListener("click", () => showView("catalog"));
-
-      actionsRow.appendChild(addBtn);
-      actionsRow.appendChild(backBtn);
+      const actions = document.createElement("div");
+      actions.className = "quote-actions";
+      const deleteBtn = document.createElement("button");
+      deleteBtn.className = "btn btn-danger";
+      deleteBtn.textContent = "Supprimer";
+      deleteBtn.addEventListener("click", () => deleteQuote(q.id));
+      actions.appendChild(deleteBtn);
 
       card.appendChild(header);
-      card.appendChild(price);
-      card.appendChild(desc);
+      card.appendChild(content);
+      card.appendChild(totalRow);
       card.appendChild(tagsRow);
-      card.appendChild(detailsList);
-      card.appendChild(optionsList);
-      card.appendChild(actionsRow);
+      card.appendChild(actions);
 
-      showView("product");
+      list.appendChild(card);
+    });
+  }
+
+  /* THEME + TELEGRAM */
+  function setupThemeToggle() {
+    const btn = document.getElementById("themeToggle");
+    btn.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme") || "dark";
+      const next = current === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      saveTheme(next);
+    });
+  }
+
+  function initTelegram() {
+    if (window.Telegram && window.Telegram.WebApp) {
+      const tg = window.Telegram.WebApp;
+      tg.ready();
+      const status = document.getElementById("tg-status");
+      status.textContent = "Telegram WebApp";
+      status.style.color = "#41d888";
+    } else {
+      document.getElementById("tg-status").textContent = "Mode navigateur";
     }
+  }
 
-    /************************************************************
-     * 6. PANIER
-     ************************************************************/
-    function addToCart(productId) {
-      const existing = cart.find(item => item.id === productId);
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        cart.push({ id: productId, qty: 1 });
-      }
-      saveCart();
-      renderCart();
-    }
+  function setupEvents() {
+    document.getElementById("searchInput").addEventListener("input", renderCatalog);
+    document.getElementById("categoryFilter").addEventListener("change", renderCatalog);
+    document.getElementById("clearCartBtn").addEventListener("click", clearCart);
+    document.getElementById("saveQuoteBtn").addEventListener("click", () => {
+      saveQuote();
+      alert("Devis enregistré dans l’historique.");
+    });
+    document.getElementById("clearAllQuotes").addEventListener("click", clearAllQuotes);
+  }
 
-    function updateCartQty(productId, delta) {
-      const idx = cart.findIndex(item => item.id === productId);
-      if (idx === -1) return;
-      cart[idx].qty += delta;
-      if (cart[idx].qty <= 0) {
-        cart.splice(idx, 1);
-      }
-      saveCart();
-      renderCart();
-    }
+  function initApp() {
+    loadStorage();
+    setupNavigation();
+    setupThemeToggle();
+    setupEvents();
+    renderCategoryFilter();
+    renderTagFilter();
+    renderCatalog();
+    renderHomePreview();
+    renderCart();
+    renderQuotes();
+    initTelegram();
+  }
 
-    function removeFromCart(productId) {
-      cart = cart.filter(item => item.id !== productId);
-      saveCart();
-      renderCart();
-    }
-
-    function clearCart() {
-      cart = [];
-      saveCart();
-      renderCart();
-    }
-
-    function computeCartTotals() {
-      let subtotal = 0;
-      cart.forEach(item => {
-        const product = PRODUCTS.find(p => p.id === item.id);
-        if (!product) return;
-        subtotal += product.price * item.qty;
-      });
-      const vat = subtotal * 0.2; // exemple
-      const total = subtotal + vat;
-      return { subtotal, vat, total };
-    }
-
-    function renderCart() {
-      const list = document.getElementById("cartList");
-      const emptyMsg = document.getElementById("cartEmpty");
-      list.innerHTML = "";
-
-      if (cart.length === 0) {
-        emptyMsg.style.display = "block";
-      } else {
-        emptyMsg.style.display = "none";
-      }
-
-      cart.forEach(item => {
-        const product = PRODUCTS.find(p => p.id === item.id);
-        if (!product) return;
-
-        const row = document.createElement("div");
-        row.className = "cart-item";
-
-        const main = document.createElement("div");
-        main.className = "cart-item-main";
-
-        const title = document.createElement("div");
-        title.className = "cart-item-title";
-        title.textContent = product.name;
-
-        const meta = document.createElement("div");
-        meta.className = "cart-item-meta";
-        meta.textContent = formatPrice(product.price) + " / unité";
-
-        main.appendChild(title);
-        main.appendChild(meta);
-
-        const actions = document.createElement("div");
-        actions.className = "cart-item-actions";
-
-        const qtyControl = document.createElement("div");
-        qtyControl.className = "qty-control";
-
-        const minus = document.createElement("button");
-        minus.className = "qty-btn";
-        minus.textContent = "−";
-        minus.addEventListener("click", () => updateCartQty(product.id, -1));
-
-        const qtyValue = document.createElement("div");
-        qtyValue.className = "qty-value";
-        qtyValue.textContent = item.qty;
-
-        const plus = document.createElement("button");
-        plus.className = "qty-btn";
-        plus.textContent = "+";
-        plus.addEventListener("click", () => updateCartQty(product.id, 1));
-
-        qtyControl.appendChild(minus);
-        qtyControl.appendChild(qtyValue);
-        qtyControl.appendChild(plus);
-
-        const linePrice = document.createElement("div");
-        linePrice.className = "small";
-        linePrice.textContent = formatPrice(product.price * item.qty);
-
-        const remove = document.createElement("div");
-        remove.className = "badge-danger";
-        remove.textContent = "Supprimer";
-        remove.addEventListener("click", () => removeFromCart(product.id));
-
-        actions.appendChild(qtyControl);
-        actions.appendChild(linePrice);
-        actions.appendChild(remove);
-
-        row.appendChild(main);
-        row.appendChild(actions);
-
-        list.appendChild(row);
-      });
-
-      const totals = computeCartTotals();
-      document.getElementById("cartSubtotal").textContent = formatPrice(totals.subtotal);
-      document.getElementById("cartVat").textContent = formatPrice(totals.vat);
-      document.getElementById("cartTotal").textContent = formatPrice(totals.total);
-    }
-
-    /************************************************************
-     * 7. DEVIS / HISTORIQUE
-     ************************************************************/
-    function saveQuote() {
-      if (cart.length === 0) return;
-
-      const totals = computeCartTotals();
-      const timestamp = new Date().toISOString();
-
-      const quote = {
-        id: "Q" + Date.now(),
-        items: cart.map(item => ({ ...item })),
-        totals,
-        createdAt: timestamp
-      };
-
-      quotes.unshift(quote);
-      saveQuotes();
-      renderQuotes();
-    }
-
-    function deleteQuote(id) {
-      quotes = quotes.filter(q => q.id !== id);
-      saveQuotes();
-      renderQuotes();
-    }
-
-    function clearAllQuotes() {
-      if (!confirm("Supprimer tous les devis enregistrés ?")) return;
-      quotes = [];
-      saveQuotes();
-      renderQuotes();
-    }
-
-    function formatDateFr(dateStr) {
-      const d = new Date(dateStr);
-      return d.toLocaleString("fr-FR", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit"
-      });
-    }
-
-    function renderQuotes() {
-      const list = document.getElementById("quoteList");
-      const emptyMsg = document.getElementById("quoteEmpty");
-      list.innerHTML = "";
-
-      if (quotes.length === 0) {
-        emptyMsg.style.display = "block";
-        return;
-      }
-      emptyMsg.style.display = "none";
-
-      quotes.forEach(q => {
-        const card = document.createElement("div");
-        card.className = "quote-card";
-
-        const header = document.createElement("div");
-        header.className = "quote-header";
-
-        const title = document.createElement("div");
-        title.className = "quote-title";
-        title.textContent = q.id;
-
-        const meta = document.createElement("div");
-        meta.className = "quote-meta";
-        meta.textContent = formatDateFr(q.createdAt);
-
-        header.appendChild(title);
-        header.appendChild(meta);
-
-        const content = document.createElement("div");
-        content.className = "quote-meta";
-        const names = q.items
-          .map(item => {
-            const product = PRODUCTS.find(p => p.id === item.id);
-            return product ? product.name + " x" + item.qty : "(inconnu)";
-          })
-          .join(" · ");
-        content.textContent = names || "(Panier vide)";
-
-        const totalRow = document.createElement("div");
-        totalRow.className = "flex-between mt-8 small";
-        const label = document.createElement("span");
-        label.textContent = "Total TTC (exemple)";
-
-        const totalValue = document.createElement("span");
-        totalValue.textContent = formatPrice(q.totals.total);
-
-        totalRow.appendChild(label);
-        totalRow.appendChild(totalValue);
-
-        const tagsRow = document.createElement("div");
-        tagsRow.className = "quote-tags";
-
-        q.items.slice(0, 5).forEach(item => {
-          const product = PRODUCTS.find(p => p.id === item.id);
-          if (!product) return;
-          const tag = document.createElement("div");
-          tag.className = "quote-tag";
-          tag.textContent = (product.category || "Produit") + " x" + item.qty;
-          tagsRow.appendChild(tag);
-        });
-
-        const actions = document.createElement("div");
-        actions.className = "quote-actions";
-
-        const deleteBtn = document.createElement("button");
-        deleteBtn.className = "btn btn-danger";
-        deleteBtn.textContent = "Supprimer";
-        deleteBtn.addEventListener("click", () => deleteQuote(q.id));
-
-        actions.appendChild(deleteBtn);
-
-        card.appendChild(header);
-        card.appendChild(content);
-        card.appendChild(totalRow);
-        card.appendChild(tagsRow);
-        card.appendChild(actions);
-
-        list.appendChild(card);
-      });
-    }
-
-    /************************************************************
-     * 8. THÈME & TELEGRAM
-     ************************************************************/
-    function setupThemeToggle() {
-      const btn = document.getElementById("themeToggle");
-      btn.addEventListener("click", () => {
-        const current = document.documentElement.getAttribute("data-theme") || "dark";
-        const next = current === "dark" ? "light" : "dark";
-        document.documentElement.setAttribute("data-theme", next);
-        saveTheme(next);
-      });
-    }
-
-    function initTelegram() {
-      if (window.Telegram && window.Telegram.WebApp) {
-        const tg = window.Telegram.WebApp;
-        tg.ready();
-        const status = document.getElementById("tg-status");
-        status.textContent = "Telegram WebApp";
-        status.style.color = "#41d888";
-
-        // Exemple : adapter aux couleurs Telegram
-        const bgColor = tg.themeParams.bg_color || "#05060a";
-        document.body.style.backgroundColor = bgColor;
-      } else {
-        document.getElementById("tg-status").textContent = "Mode navigateur";
-      }
-    }
-
-    /************************************************************
-     * 9. INIT GLOBAL
-     ************************************************************/
-    function setupEvents() {
-      document.getElementById("searchInput").addEventListener("input", () => {
-        renderCatalog();
-      });
-
-      document.getElementById("categoryFilter").addEventListener("change", () => {
-        renderCatalog();
-      });
-
-      document.getElementById("clearCartBtn").addEventListener("click", clearCart);
-      document.getElementById("saveQuoteBtn").addEventListener("click", () => {
-        saveQuote();
-        alert("Devis enregistré dans l’historique.");
-      });
-
-      document.getElementById("clearAllQuotes").addEventListener("click", clearAllQuotes);
-    }
-
-    function initApp() {
-      loadStorage();
-      setupNavigation();
-      setupThemeToggle();
-      setupEvents();
-      renderCategoryFilter();
-      renderTagFilter();
-      renderCatalog();
-      renderHomePreview();
-      renderCart();
-      renderQuotes();
-      initTelegram();
-    }
-
-    document.addEventListener("DOMContentLoaded", initApp);
-  </script>
+  document.addEventListener("DOMContentLoaded", initApp);
+</script>
 </body>
 </html>
