@@ -1366,30 +1366,54 @@ const PRODUCTS = [
     navigate("cart");
   }
 
-  function renderCart() {
-    const container = document.getElementById("cartList");
-    if (CART.length === 0) {
-      container.innerHTML = `<div class="muted">Votre panier est vide.</div>`;
-      return;
-    }
+function renderCart() {
+  const container = document.getElementById("cartList");
+  if (!container) return;
 
-    let html = "";
-    CART.forEach((p, i) => {
-      html += `
-        <div class="cart-item">
-          <div>
-            <strong>${p.name}</strong><br />
-            <span class="muted" style="font-size:12px;">${p.farm} • ${p.category}</span>
-          </div>
-          <button class="header-btn" style="font-size:11px;"
-                  onclick="removeFromCart(${i})">Retirer</button>
-        </div>
-      `;
-    });
-
-    html += `<button class="btn-primary" onclick="validateOrder()">Valider la commande</button>`;
-    container.innerHTML = html;
+  if (CART.length === 0) {
+    container.innerHTML = `<div class="muted">Votre panier est vide.</div>`;
+    return;
   }
+
+  let total = 0;
+  let html = "";
+
+  CART.forEach((item, index) => {
+    const lineTotal = item.price * item.qty;
+    total += lineTotal;
+
+    html += `
+      <div class="cart-item">
+        <div>
+          <strong>${item.name}</strong><br />
+          <span class="muted" style="font-size:12px;">
+            ${item.gram} • ${item.farm} • ${item.category}
+          </span>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:13px;">${lineTotal}€</div>
+          <button class="header-btn"
+                  style="font-size:11px;margin-top:4px;"
+                  onclick="removeFromCart(${index})">
+            Retirer
+          </button>
+        </div>
+      </div>
+    `;
+  });
+
+  html += `
+    <div style="text-align:right;margin-top:8px;font-size:13px;">
+      <strong>Total : ${total}€</strong>
+    </div>
+    <button class="btn-primary" style="margin-top:10px;"
+            onclick="validateOrder()">
+      Valider la commande
+    </button>
+  `;
+
+  container.innerHTML = html;
+}
 
   function removeFromCart(index) {
     CART.splice(index, 1);
@@ -1586,15 +1610,29 @@ function qtyMinus() { if(qty > 1){ qty--; document.getElementById("qtyValue").te
 
 /* VALIDER */
 function validateGramChoice() {
-    if (!selectedGram) return;
+  if (!currentProduct || !selectedGram) return;
 
-    alert(
-        `AJOUTÉ : ${currentProduct.name}\n` +
-        `${selectedGram.label} — ${selectedGram.price}€\n` +
-        `Quantité : ${qty}`
-    );
+  // On crée un item de panier complet
+  const item = {
+    productId: currentProduct.id,
+    name: currentProduct.name,
+    farm: currentProduct.farm,
+    category: currentProduct.category,
+    gram: selectedGram.label,
+    price: selectedGram.price,
+    qty: qty
+  };
 
-    closeGramPopup();
+  CART.push(item);
+
+  // On met à jour l’affichage du panier
+  renderCart();
+
+  // On ferme le popup
+  closeGramPopup();
+
+  // On bascule sur l’onglet Panier
+  navigate('cart');
 }
 </script>
 </body>
