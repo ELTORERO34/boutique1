@@ -1,213 +1,272 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Electric Pulse Boutique</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, maximum-scale=1">
+<title>NEXA MARKET — Electric Pulse</title>
+
 <style>
 
-/* ------------------------------
-   PALETTE ELECTRIC PULSE
---------------------------------*/
+/* ---------------------------------------------------
+   ⚡ VARIABLES GLOBALES — THEME ELECTRIC PULSE
+--------------------------------------------------- */
 :root {
   --pulse-1: #00c6ff;
   --pulse-2: #2fd2ff;
   --pulse-3: #b7e8ff;
-  --pulse-glow: rgba(0, 198, 255, 0.35);
-  --bg: #03040a;
-  --card: rgba(255,255,255,0.05);
-  --text: #f2f6ff;
-  --muted: #9aa4b2;
+  --pulse-glow: rgba(0, 198, 255, 0.45);
+
+  --bg-gradient: radial-gradient(circle at top, #09121f, #02040a 70%);
+  --bg-image: ""; /* 👉 mets une URL plus tard */
+
+  --glass: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.12);
+
+  --text: #e5f4ff;
+  --muted: #8ea3b8;
 }
 
-/* ------------------------------
-   RESET
---------------------------------*/
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background: var(--bg);
+  font-family: system-ui, sans-serif;
+  background: var(--bg-gradient);
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: var(--text);
   overflow:hidden;
 }
+
 #app {
   width:100%;
-  height:100vh;
-  max-width:500px;
+  max-width:540px;
   margin:auto;
-  display:flex;
-  flex-direction:column;
+  height:100vh;
   position:relative;
 }
 
-/* ------------------------------
-   HEADER GLOBAL
---------------------------------*/
+/* ---------------------------------------------------
+   ⚡ HEADER
+--------------------------------------------------- */
 .header {
   position:fixed;
   top:0; left:0; right:0;
-  height:60px;
+  height:65px;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(16px);
+  border-bottom:1px solid var(--glass-border);
   display:flex;
   align-items:center;
   justify-content:space-between;
   padding:0 16px;
-  backdrop-filter: blur(14px);
-  background: rgba(0,0,0,0.35);
-  border-bottom:1px solid rgba(255,255,255,0.06);
   z-index:20;
 }
 
-.header-title {
-  font-size:18px;
-  font-weight:700;
-  text-align:center;
-  flex:1;
-}
-
 .header-btn {
-  font-size:14px;
   padding:6px 12px;
   border-radius:12px;
-  border:1px solid rgba(255,255,255,0.15);
-  color:var(--text);
-  text-decoration:none;
+  border:1px solid var(--pulse-2);
+  color:var(--pulse-3);
+  font-size:14px;
+}
+
+.header-title {
+  flex:1;
+  text-align:center;
+  font-size:20px;
+  font-weight:800;
+  text-shadow:0 0 12px var(--pulse-glow);
 }
 
 .header-icon {
   font-size:22px;
-  padding:6px;
+  color:var(--pulse-3);
 }
 
-/* ------------------------------
-   VIEW WRAPPER (scroll inside)
---------------------------------*/
+/* ---------------------------------------------------
+   ⚡ VIEW
+--------------------------------------------------- */
 .view {
   position:absolute;
-  top:60px;
-  left:0; right:0; bottom:70px;
+  top:65px;
+  bottom:75px;
+  left:0; right:0;
   overflow-y:auto;
   padding:16px;
   display:none;
 }
 .view.active { display:block; }
 
-/* ------------------------------
-   BOTTOM NAVIGATION
---------------------------------*/
+/* ---------------------------------------------------
+   ⚡ NAVIGATION BAS
+--------------------------------------------------- */
 .navbar {
   position:fixed;
   left:0; right:0; bottom:0;
-  height:70px;
+  height:75px;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(14px);
+  border-top:1px solid var(--glass-border);
   display:flex;
   justify-content:space-around;
   align-items:center;
-  background: rgba(0,0,0,0.45);
-  backdrop-filter: blur(12px);
-  border-top:1px solid rgba(255,255,255,0.1);
 }
 
-.nav-btn {
+.nav-btn { text-align:center; font-size:12px; color:var(--muted); }
+.nav-btn i { display:block; font-size:20px; margin-bottom:2px; }
+.nav-btn.active { color:var(--pulse-2); text-shadow:0 0 8px var(--pulse-glow); }
+
+/* ---------------------------------------------------
+   ⚡ TOP MENU (LOGO + TABS FARMS / CATEGORIES)
+--------------------------------------------------- */
+.menu-top-brand {
   text-align:center;
-  color:var(--muted);
-  font-size:12px;
+  margin-bottom:20px;
 }
-.nav-btn.active {
-  color:var(--pulse-3);
-  text-shadow:0 0 6px var(--pulse-glow);
-}
-.nav-btn i {
-  display:block;
-  font-size:20px;
-  margin-bottom:3px;
-}
-
-/* ------------------------------
-   CARDS
---------------------------------*/
-.card {
-  background: var(--card);
-  padding:16px;
-  border-radius:20px;
-  margin-bottom:18px;
-  border:1px solid rgba(255,255,255,0.06);
-}
-
-/* ------------------------------
-   TABS (Infos + Panier)
---------------------------------*/
-.tab-bar {
-  display:flex;
-  gap:8px;
-  margin-bottom:18px;
-}
-
-.tab {
-  flex:1;
-  padding:10px;
-  border-radius:14px;
-  text-align:center;
-  font-size:14px;
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.08);
-  color:var(--muted);
-}
-
-.tab.active {
+.brand-circle {
+  width:60px; height:60px;
+  border-radius:50%;
+  margin:auto;
   background:linear-gradient(135deg, var(--pulse-1), var(--pulse-3));
-  border-color:var(--pulse-1);
   color:#000;
-  font-weight:600;
-  text-shadow:0 0 10px var(--pulse-glow);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  font-size:22px;
+  box-shadow:0 0 18px var(--pulse-glow);
+}
+.brand-text {
+  margin-top:6px;
+  font-size:18px;
+  font-weight:700;
 }
 
-/* ------------------------------
-   MENU (catalogue placeholder)
---------------------------------*/
+.menu-top-tabs {
+  display:flex;
+  gap:12px;
+  margin-bottom:20px;
+}
+.menu-top-tab {
+  flex:1;
+  text-align:center;
+  padding:12px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.12);
+  color:var(--muted);
+  font-weight:600;
+}
+.menu-top-tab.active {
+  background:linear-gradient(135deg, var(--pulse-1), var(--pulse-3));
+  color:#000;
+  border-color:var(--pulse-2);
+}
+
+/* ---------------------------------------------------
+   ⚡ PRODUITS GRID
+--------------------------------------------------- */
 .product-grid {
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
+  gap:14px;
 }
 
 .product-card {
-  background:var(--card);
+  padding:10px;
+  background:var(--glass);
   border-radius:18px;
-  padding:12px;
-  border:1px solid rgba(255,255,255,0.06);
+  border:1px solid var(--glass-border);
+  backdrop-filter:blur(10px);
+  position:relative;
 }
 
 .product-img {
   width:100%;
-  height:120px;
-  background:#0a0f1c;
+  height:150px;
   border-radius:14px;
-  margin-bottom:10px;
+  background:#0d1624 center/cover no-repeat;
+  margin-bottom:8px;
 }
 
-/* ------------------------------
-   PRODUCT DETAIL (placeholder)
---------------------------------*/
-.product-hero {
-  background:#0b0f18;
-  border-radius:20px;
-  height:240px;
+.product-badge {
+  position:absolute;
+  top:10px;
+  left:10px;
+  padding:4px 10px;
+  font-size:11px;
+  background:rgba(0,0,0,0.5);
+  border:1px solid var(--pulse-2);
+  border-radius:12px;
+  color:var(--pulse-3);
+}
+
+/* ---------------------------------------------------
+   ⚡ CARDS
+--------------------------------------------------- */
+.card {
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:18px;
+  padding:16px;
   margin-bottom:18px;
 }
 
-/* ------------------------------
-   PANIER
---------------------------------*/
-.cart-item {
-  padding:10px 0;
-  border-bottom:1px solid rgba(255,255,255,0.07);
+/* ---------------------------------------------------
+   ⚡ TABS INFOS + PANIER
+--------------------------------------------------- */
+.tab-bar {
+  display:flex;
+  gap:12px;
+  margin-bottom:20px;
 }
-
-.order-card {
+.tab {
+  flex:1;
   padding:12px;
   border-radius:16px;
+  text-align:center;
   background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.08);
-  margin-bottom:14px;
+  border:1px solid rgba(255,255,255,0.12);
+  color:var(--muted);
+}
+.tab.active {
+  background:linear-gradient(135deg, var(--pulse-1), var(--pulse-3));
+  color:#000;
+}
+
+/* ---------------------------------------------------
+   ⚡ BUTTON
+--------------------------------------------------- */
+.btn-primary {
+  background:linear-gradient(135deg, var(--pulse-1), var(--pulse-3));
+  color:#000;
+  padding:12px;
+  border-radius:16px;
+  border:none;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+}
+.btn-primary.full { width:100%; }
+
+/* ---------------------------------------------------
+   ⚡ BADGE ROW
+--------------------------------------------------- */
+.badge-row {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:14px;
+}
+
+.tag-badge {
+  padding:4px 10px;
+  border-radius:14px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--glass-border);
+  font-size:12px;
+  color:var(--pulse-3);
 }
 
 </style>
@@ -217,162 +276,344 @@ body {
 
 <div id="app">
 
-  <!-- HEADER -->
-  <div class="header">
-    <a class="header-btn" onclick="navigate('menu')">Fermer</a>
-    <div class="header-title" id="headerTitle">Boutique</div>
-    <div class="header-icon">⋯</div>
+<!-- HEADER -->
+<div class="header">
+  <div class="header-btn" onclick="navigate('menu')">Fermer</div>
+  <div class="header-title" id="headerTitle">NEXA MARKET</div>
+  <div class="header-icon">⋯</div>
+</div>
+
+<!-- MENU -->
+<div id="view-menu" class="view active">
+
+  <div class="menu-top-brand">
+    <div class="brand-circle">NM</div>
+    <div class="brand-text">NEXA MARKET</div>
   </div>
 
-  <!-- MENU VIEW -->
-  <div id="view-menu" class="view active">
-    <h2 style="margin-bottom:14px;">Catalogue</h2>
-    <div class="product-grid">
-      <div class="product-card" onclick="openProduct()">
-        <div class="product-img"></div>
-        <div>Produit Exemple</div>
-        <div class="muted small">Catégorie</div>
-      </div>
-      <div class="product-card" onclick="openProduct()">
-        <div class="product-img"></div>
-        <div>Produit Exemple 2</div>
-        <div class="muted small">Catégorie</div>
-      </div>
-    </div>
+  <div class="menu-top-tabs">
+    <div class="menu-top-tab active" onclick="switchMenuTab('farms')">FARMS</div>
+    <div class="menu-top-tab" onclick="switchMenuTab('categories')">CATÉGORIES</div>
   </div>
 
-  <!-- INFOS VIEW -->
-  <div id="view-infos" class="view">
-    <div class="tab-bar">
-      <div class="tab active" onclick="switchInfos('envoi')">Envoi</div>
-      <div class="tab" onclick="switchInfos('livraison')">Livraison</div>
-      <div class="tab" onclick="switchInfos('meet')">Meet Up</div>
-    </div>
-
-    <div id="infos-envoi">
-      <div class="card">
-        <h3>Localisation</h3>
-        <p class="muted">France Métropolitaine</p>
-      </div>
-
-      <div class="card">
-        <h3>Délais</h3>
-        <p class="muted">2–3 jours ouvrés (exemple)</p>
-      </div>
-    </div>
-
-    <div id="infos-livraison" style="display:none;">
-      <div class="card">
-        <h3>Zones de Livraison</h3>
-        <p class="muted">Exemple : 01 / 38 / 69 / 73</p>
-      </div>
-    </div>
-
-    <div id="infos-meet" style="display:none;">
-      <div class="card">
-        <h3>Point de Rencontre</h3>
-        <p class="muted">Ville Exemple</p>
-      </div>
-    </div>
+  <div id="menu-farms">
+    <div id="productGrid" class="product-grid"></div>
   </div>
 
-  <!-- PANIER VIEW -->
-  <div id="view-cart" class="view">
-    <div class="tab-bar">
-      <div class="tab active" onclick="switchCart('panier')">Panier</div>
-      <div class="tab" onclick="switchCart('cmd')">Commandes</div>
-    </div>
-
-    <div id="cart-list">
-      <p class="muted" style="text-align:center; padding:40px 0;">
-        Votre panier est vide.
-      </p>
-    </div>
-
-    <div id="cart-orders" style="display:none;">
-      <p class="muted" style="text-align:center; padding:40px 0;">
-        Aucune commande pour le moment.
-      </p>
-    </div>
-  </div>
-
-  <!-- PRODUCT VIEW -->
-  <div id="view-product" class="view">
-    <div class="product-hero"></div>
+  <div id="menu-categories" style="display:none;">
     <div class="card">
-      <h2>Produit Exemple</h2>
-      <p class="muted">Description de démonstration...</p>
+      <h3>Catégories</h3>
+      <p class="muted">Exemples : Plantes, Accessoires, Packs...</p>
     </div>
   </div>
 
-  <!-- NAVIGATION BAS -->
-  <div class="navbar">
-    <div class="nav-btn active" onclick="navigate('menu')"><i>🏠</i>Menu</div>
-    <div class="nav-btn" onclick="navigate('cart')"><i>🛒</i>Panier</div>
-    <div class="nav-btn" onclick="navigate('infos')"><i>ℹ️</i>Infos</div>
+</div>
+
+<!-- PRODUIT -->
+<div id="view-product" class="view">
+  <div id="productHero" class="product-img" style="height:220px; border-radius:20px;"></div>
+
+  <div class="card">
+    <h2 id="productName"></h2>
+    <p id="productDesc" class="muted"></p>
+    <div id="productBadges" class="badge-row"></div>
+    <button class="btn-primary full" onclick="addToCart()">Ajouter au panier</button>
   </div>
+</div>
+
+<!-- PANIER -->
+<div id="view-cart" class="view">
+
+  <div class="tab-bar">
+    <div class="tab active" onclick="switchCart('panier')">Panier</div>
+    <div class="tab" onclick="switchCart('commandes')">Commandes</div>
+  </div>
+
+  <div id="cartList"></div>
+  <div id="orderList" style="display:none;"></div>
+
+</div>
+
+<!-- INFOS -->
+<div id="view-infos" class="view">
+  <div class="tab-bar">
+    <div class="tab active" onclick="switchInfos('envoi')">Envoi</div>
+    <div class="tab" onclick="switchInfos('livraison')">Livraison</div>
+    <div class="tab" onclick="switchInfos('meet')">Meet Up</div>
+  </div>
+
+  <div id="infos-envoi" class="card">
+    <h3>Envoi</h3>
+    <p class="muted">Infos d’envoi ici…</p>
+  </div>
+
+  <div id="infos-livraison" class="card" style="display:none;">
+    <h3>Livraison</h3>
+    <p class="muted">Infos de livraison ici…</p>
+  </div>
+
+  <div id="infos-meet" class="card" style="display:none;">
+    <h3>Meet Up</h3>
+    <p class="muted">Points de rencontre ici…</p>
+  </div>
+</div>
+
+<!-- AVIS -->
+<div id="view-avis" class="view">
+  <h2>Avis</h2>
+  <div class="card">⭐ Exemple d’avis client…</div>
+</div>
+
+<!-- CONTACT -->
+<div id="view-contact" class="view">
+  <h2>Contact</h2>
+  <div class="card">
+    <p class="muted">Contactez-nous via Telegram…</p>
+  </div>
+</div>
+
+<!-- NAVIGATION BAS -->
+<div class="navbar">
+  <div class="nav-btn active" onclick="navigate('menu')"><i>🏠</i>Menu</div>
+  <div class="nav-btn" onclick="navigate('cart')"><i>🛒</i>Panier</div>
+  <div class="nav-btn" onclick="navigate('infos')"><i>ℹ️</i>Infos</div>
+  <div class="nav-btn" onclick="navigate('avis')"><i>⭐</i>Avis</div>
+  <div class="nav-btn" onclick="navigate('contact')"><i>✉️</i>Contact</div>
+</div>
 
 </div>
 
 <script>
 
-/* ------------------------------
+/* ---------------------------------------------------
+   PRODUITS EXEMPLES (12 ITEMS)
+--------------------------------------------------- */
+const PRODUCTS = [
+  {
+    name: "Green Leaf 01",
+    desc: "Produit d'exemple.",
+    img: "https://images.unsplash.com/photo-1466690672306-5f92a57251cb",
+    badges: ["Organic", "Local"]
+  },
+  {
+    name: "Nature Pack",
+    desc: "Collection d'exemple.",
+    img: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f",
+    badges: ["Premium"]
+  },
+  {
+    name: "Fresh Plant",
+    desc: "Produit démonstration.",
+    img: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
+    badges: ["GreenHouse"]
+  },
+  {
+    name: "Leaf Boost",
+    desc: "Démonstration.",
+    img: "https://images.unsplash.com/photo-1501004318513-b39fe3a0b112",
+    badges: ["Top Quality"]
+  },
+  {
+    name: "Herba 07",
+    desc: "Exemple.",
+    img: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f",
+    badges: ["Organic"]
+  },
+  {
+    name: "Zen Leaf",
+    desc: "Produit neutre.",
+    img: "https://images.unsplash.com/photo-1466690672306-5f92a57251cb",
+    badges: ["Fresh"]
+  },
+  {
+    name: "Botanic 3",
+    desc: "Exemple.",
+    img: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f",
+    badges: ["Premium"]
+  },
+  {
+    name: "Natural X",
+    desc: "Produit exemple.",
+    img: "https://images.unsplash.com/photo-1501004318451-8915848b95cf",
+    badges: ["Organic"]
+  },
+  {
+    name: "Leafy Pro",
+    desc: "Produit neutre.",
+    img: "https://images.unsplash.com/photo-1616509091249-e9f32d42d3ea",
+    badges: ["Local"]
+  },
+  {
+    name: "Fresh Mix",
+    desc: "Produit.",
+    img: "https://images.unsplash.com/photo-1501004318677-dad9d958e0e9",
+    badges: ["Green"]
+  },
+  {
+    name: "Garden 14",
+    desc: "Démo.",
+    img: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
+    badges: ["Premium"]
+  },
+  {
+    name: "Plant X",
+    desc: "Produit neutre.",
+    img: "https://images.unsplash.com/photo-1466690672306-5f92a57251cb",
+    badges: ["Bio"]
+  }
+];
+
+// Injecter dans le menu
+function loadMenu(){
+  let html = "";
+  PRODUCTS.forEach((p,i)=>{
+    html += `
+      <div class="product-card" onclick="openProduct(${i})">
+        <div class="product-badge">${p.badges[0] || ""}</div>
+        <div class="product-img" style="background-image:url('${p.img}');"></div>
+        <div><strong>${p.name}</strong></div>
+        <div class="muted" style="font-size:13px;">Collection botanique</div>
+      </div>
+    `;
+  });
+  document.querySelector("#productGrid").innerHTML = html;
+}
+loadMenu();
+
+/* ---------------------------------------------------
    NAVIGATION
---------------------------------*/
-function navigate(view) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(n => n.classList.remove('active'));
+--------------------------------------------------- */
+function navigate(view){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelector(`#view-${view}`).classList.add('active');
 
-  if(view === 'menu'){ document.getElementById('view-menu').classList.add('active'); }
-  if(view === 'infos'){ document.getElementById('view-infos').classList.add('active'); }
-  if(view === 'cart'){ document.getElementById('view-cart').classList.add('active'); }
-
+  document.querySelectorAll('.nav-btn').forEach(n=>n.classList.remove('active'));
   document.querySelector(`.nav-btn[onclick="navigate('${view}')"]`).classList.add('active');
 
-  let title = "Boutique";
-  if(view === 'infos') title = "Informations";
-  if(view === 'cart') title = "Panier";
-  if(view === 'menu') title = "Catalogue";
-  document.getElementById("headerTitle").textContent = title;
+  const titleMap = {
+    menu:"NEXA MARKET",
+    cart:"Panier",
+    infos:"Informations",
+    avis:"Avis",
+    contact:"Contact",
+    product:"Produit"
+  };
+  document.querySelector("#headerTitle").textContent = titleMap[view] || "NEXA MARKET";
 }
 
-/* ------------------------------
+/* ---------------------------------------------------
+   TABS MENU
+--------------------------------------------------- */
+function switchMenuTab(tab){
+  document.querySelectorAll('.menu-top-tab').forEach(x=>x.classList.remove('active'));
+  document.querySelector(`.menu-top-tab[onclick="switchMenuTab('${tab}')"]`).classList.add('active');
+
+  document.querySelector("#menu-farms").style.display="none";
+  document.querySelector("#menu-categories").style.display="none";
+  document.querySelector(`#menu-${tab}`).style.display="block";
+}
+
+/* ---------------------------------------------------
    INFOS TABS
---------------------------------*/
-function switchInfos(tab) {
-  document.querySelectorAll('#view-infos .tab').forEach(t => t.classList.remove('active'));
-  document.querySelector(`#view-infos .tab-bar .tab[onclick="switchInfos('${tab}')"]`).classList.add('active');
+--------------------------------------------------- */
+function switchInfos(tab){
+  document.querySelectorAll('#view-infos .tab').forEach(t=>t.classList.remove('active'));
+  document.querySelector(`#view-infos .tab[onclick="switchInfos('${tab}')"]`).classList.add('active');
 
-  document.getElementById("infos-envoi").style.display = "none";
-  document.getElementById("infos-livraison").style.display = "none";
-  document.getElementById("infos-meet").style.display = "none";
-
-  document.getElementById(`infos-${tab}`).style.display = "block";
+  ["envoi","livraison","meet"].forEach(s=>document.querySelector(`#infos-${s}`).style.display="none");
+  document.querySelector(`#infos-${tab}`).style.display="block";
 }
 
-/* ------------------------------
-   PANIER TABS
---------------------------------*/
-function switchCart(tab) {
-  document.querySelectorAll('#view-cart .tab').forEach(t => t.classList.remove('active'));
-  document.querySelector(`#view-cart .tab-bar .tab[onclick="switchCart('${tab}')"]`).classList.add('active');
+/* ---------------------------------------------------
+   PANIER
+--------------------------------------------------- */
+let CART = [];
+let ORDERS = [];
 
-  document.getElementById("cart-list").style.display = "none";
-  document.getElementById("cart-orders").style.display = "none";
+function switchCart(tab){
+  document.querySelectorAll('#view-cart .tab').forEach(t=>t.classList.remove('active'));
+  document.querySelector(`#view-cart .tab[onclick="switchCart('${tab}')"]`).classList.add('active');
 
-  if(tab === "panier")
-    document.getElementById("cart-list").style.display = "block";
-  else
-    document.getElementById("cart-orders").style.display = "block";
+  document.querySelector("#cartList").style.display="none";
+  document.querySelector("#orderList").style.display="none";
+
+  if(tab==="panier") document.querySelector("#cartList").style.display="block";
+  else document.querySelector("#orderList").style.display="block";
+
+  renderCart();
+  renderOrders();
 }
 
-/* ------------------------------
-   PRODUCT OPEN
---------------------------------*/
-function openProduct() {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById('view-product').classList.add('active');
-  document.getElementById('headerTitle').textContent = "Produit";
+function addToCart(){
+  CART.push(currentProduct);
+  alert("Ajouté au panier !");
+}
+
+function renderCart(){
+  if(CART.length===0){
+    document.querySelector("#cartList").innerHTML = `<p class="muted">Panier vide.</p>`;
+    return;
+  }
+
+  let html="";
+  CART.forEach((p,i)=>{
+    html+=`
+      <div class="card">
+        <strong>${p.name}</strong><br>
+        <span class="muted">${p.desc}</span>
+      </div>
+    `;
+  });
+
+  html += `<button class="btn-primary full" onclick="validateOrder()">Valider commande</button>`;
+  document.querySelector("#cartList").innerHTML = html;
+}
+
+function validateOrder(){
+  ORDERS.push([...CART]);
+  CART=[];
+  renderCart();
+  renderOrders();
+  alert("Commande validée !");
+}
+
+function renderOrders(){
+  if(ORDERS.length===0){
+    document.querySelector("#orderList").innerHTML = `<p class="muted">Aucune commande.</p>`;
+    return;
+  }
+
+  let html="";
+  ORDERS.forEach((o,i)=>{
+    html += `<div class="card"><strong>Commande ${i+1}</strong><br>`;
+    o.forEach(p=>{
+      html += `<div class="muted">${p.name}</div>`;
+    });
+    html += `</div>`;
+  });
+
+  document.querySelector("#orderList").innerHTML = html;
+}
+
+/* ---------------------------------------------------
+   PAGE PRODUIT
+--------------------------------------------------- */
+let currentProduct = null;
+
+function openProduct(i){
+  currentProduct = PRODUCTS[i];
+
+  document.querySelector("#productHero").style.backgroundImage = `url(${currentProduct.img})`;
+  document.querySelector("#productName").textContent = currentProduct.name;
+  document.querySelector("#productDesc").textContent = currentProduct.desc;
+
+  let b="";
+  currentProduct.badges.forEach(x=>{
+    b += `<div class="tag-badge">${x}</div>`;
+  });
+  document.querySelector("#productBadges").innerHTML = b;
+
+  navigate("product");
 }
 
 </script>
