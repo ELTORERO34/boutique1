@@ -556,6 +556,76 @@
       font-weight: 600;
       margin-right: 4px;
     }
+    
+    /* HERO PRODUIT AVEC IMAGE PLEIN LARGE */
+.product-hero {
+  position: relative;
+  margin: -12px -12px 10px;       /* pour coller aux bords de la card */
+  border-radius: 22px;
+  overflow: hidden;
+  background: #000;
+}
+
+.product-hero-media img {
+  width: 100%;
+  max-height: 260px;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Dégradé + textes sur l’image */
+.product-hero-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 12px 14px;
+  background: linear-gradient(to top,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.0)
+  );
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.product-hero-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.product-hero-subtitle {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Tags / badges sur la photo */
+.product-hero-tags {
+  margin-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.hero-chip {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(0,0,0,0.55);
+  color: #f5f5f7;
+}
+
+.hero-chip-strong {
+  border-color: var(--accent);
+  background: rgba(0,0,0,0.75);
+}
+
+/* Corps texte sous la photo */
+.product-detail-body {
+  margin-top: 4px;
+}
 
     /* BOUTONS GÉNÉRAUX */
     .btn {
@@ -1465,118 +1535,116 @@
   }
 
   /*************** PRODUIT DETAIL + VARIANTS ***************/
-  function openProductDetail(id) {
-    const p = PRODUCTS.find(pr => pr.id === id);
-    if (!p) return;
-    currentProductId = id;
+function openProductDetail(id) {
+  const p = PRODUCTS.find(pr => pr.id === id);
+  if (!p) return;
+  currentProductId = id;
 
-    const card = document.getElementById("productDetailCard");
-    card.innerHTML = "";
+  const card = document.getElementById("productDetailCard");
+  card.innerHTML = "";
 
-    const top = document.createElement("div");
-    top.className = "product-detail-top";
+  /* --- HERO AVEC IMAGE EN PREMIER --- */
+  const hero = document.createElement("div");
+  hero.className = "product-hero";
 
-    const imgBox = document.createElement("div");
-    imgBox.className = "product-detail-img";
-    const img = document.createElement("img");
-    img.src = p.image;
-    img.alt = p.name;
-    imgBox.appendChild(img);
+  const media = document.createElement("div");
+  media.className = "product-hero-media";
+  const img = document.createElement("img");
+  img.src = p.image;
+  img.alt = p.name;
+  media.appendChild(img);
 
-    const main = document.createElement("div");
-    main.className = "product-detail-main";
+  const overlay = document.createElement("div");
+  overlay.className = "product-hero-overlay";
 
-    const name = document.createElement("div");
-    name.className = "product-detail-name";
-    name.textContent = p.name;
+  const titleEl = document.createElement("div");
+  titleEl.className = "product-hero-title";
+  titleEl.textContent = p.name;
 
-    const cat = document.createElement("div");
-    cat.className = "product-detail-category";
-    cat.textContent = p.subtitle ? p.subtitle + " • " + p.category : p.category;
+  const subtitleEl = document.createElement("div");
+  subtitleEl.className = "product-hero-subtitle";
+  subtitleEl.textContent = p.subtitle ? p.subtitle + " • " + p.category : p.category;
 
-    const price = document.createElement("div");
-    price.className = "product-detail-price";
-    price.textContent = formatPrice(p.price);
+  const tagsRow = document.createElement("div");
+  tagsRow.className = "product-hero-tags";
 
-    main.appendChild(name);
-    main.appendChild(cat);
-    main.appendChild(price);
-
-    if (p.badge || p.flag) {
-      const badgeLine = document.createElement("div");
-      if (p.badge) {
-        const b = document.createElement("span");
-        b.className = "badge";
-        b.textContent = p.badge;
-        badgeLine.appendChild(b);
-      }
-      if (p.flag) {
-        const f = document.createElement("span");
-        f.className = "badge";
-        f.style.marginLeft = "6px";
-        f.textContent = p.flag;
-        badgeLine.appendChild(f);
-      }
-      main.appendChild(badgeLine);
-    }
-
-    top.appendChild(imgBox);
-    top.appendChild(main);
-
-    const desc = document.createElement("div");
-    desc.className = "muted mt-8";
-    desc.textContent = p.description;
-
-    const detailsList = document.createElement("div");
-    detailsList.className = "mt-8";
-    if (p.details && p.details.length) {
-      p.details.forEach(d => {
-        const row = document.createElement("div");
-        row.className = "small muted";
-        row.textContent = "• " + d;
-        detailsList.appendChild(row);
-      });
-    }
-
-    const tagsRow = document.createElement("div");
-    tagsRow.className = "pill-row";
-    (p.tags || []).forEach(t => {
-      const pill = document.createElement("div");
-      pill.className = "small-pill";
-      pill.textContent = "#" + t;
-      tagsRow.appendChild(pill);
-    });
-
-    const variantsTitle = document.createElement("div");
-    variantsTitle.className = "small mt-10";
-    variantsTitle.textContent = "Ajouter au panier :";
-
-    const variantsGrid = document.createElement("div");
-    variantsGrid.className = "variants-grid";
-
-    (p.variants || []).forEach(v => {
-      const btn = document.createElement("button");
-      btn.className = "variant-btn";
-      const spanPrice = document.createElement("span");
-      spanPrice.textContent = v.label.split(" ")[0]; // ex: "60€"
-      const spanRest = document.createElement("span");
-      spanRest.style.fontWeight = "400";
-      spanRest.textContent = v.label.replace(spanPrice.textContent, "").trim();
-      btn.appendChild(spanPrice);
-      btn.appendChild(spanRest);
-      btn.addEventListener("click", () => openVariantModal(p.id, v.id));
-      variantsGrid.appendChild(btn);
-    });
-
-    card.appendChild(top);
-    card.appendChild(desc);
-    card.appendChild(detailsList);
-    card.appendChild(tagsRow);
-    card.appendChild(variantsTitle);
-    card.appendChild(variantsGrid);
-
-    showView("product");
+  if (p.badge) {
+    const b = document.createElement("span");
+    b.className = "hero-chip hero-chip-strong";
+    b.textContent = p.badge;
+    tagsRow.appendChild(b);
   }
+  if (p.flag) {
+    const f = document.createElement("span");
+    f.className = "hero-chip";
+    f.textContent = p.flag;
+    tagsRow.appendChild(f);
+  }
+  (p.tags || []).forEach(t => {
+    const pill = document.createElement("span");
+    pill.className = "hero-chip";
+    pill.textContent = "#" + t;
+    tagsRow.appendChild(pill);
+  });
+
+  overlay.appendChild(titleEl);
+  overlay.appendChild(subtitleEl);
+  overlay.appendChild(tagsRow);
+
+  hero.appendChild(media);
+  hero.appendChild(overlay);
+
+  /* --- CORPS TEXTE + VARIANTES EN DESSOUS --- */
+  const body = document.createElement("div");
+  body.className = "product-detail-body";
+
+  const desc = document.createElement("div");
+  desc.className = "muted mt-8";
+  desc.textContent = p.description;
+
+  const detailsList = document.createElement("div");
+  detailsList.className = "mt-8";
+  if (p.details && p.details.length) {
+    p.details.forEach(d => {
+      const row = document.createElement("div");
+      row.className = "small muted";
+      row.textContent = "• " + d;
+      detailsList.appendChild(row);
+    });
+  }
+
+  const variantsTitle = document.createElement("div");
+  variantsTitle.className = "small mt-10";
+  variantsTitle.textContent = "Ajouter au panier :";
+
+  const variantsGrid = document.createElement("div");
+  variantsGrid.className = "variants-grid";
+
+  (p.variants || []).forEach(v => {
+    const btn = document.createElement("button");
+    btn.className = "variant-btn";
+    const spanPrice = document.createElement("span");
+    spanPrice.textContent = v.label.split(" ")[0]; // ex: "60€"
+    const spanRest = document.createElement("span");
+    spanRest.style.fontWeight = "400";
+    spanRest.textContent = v.label.replace(spanPrice.textContent, "").trim();
+    btn.appendChild(spanPrice);
+    btn.appendChild(spanRest);
+    btn.addEventListener("click", () => openVariantModal(p.id, v.id));
+    variantsGrid.appendChild(btn);
+  });
+
+  body.appendChild(desc);
+  body.appendChild(detailsList);
+  body.appendChild(variantsTitle);
+  body.appendChild(variantsGrid);
+
+  /* --- ON ASSEMBLE DANS LA CARD --- */
+  card.appendChild(hero);
+  card.appendChild(body);
+
+  showView("product");
+}
 
   /*************** MODAL VARIANT ***************/
   function openVariantModal(productId, variantId) {
