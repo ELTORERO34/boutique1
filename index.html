@@ -579,6 +579,38 @@
       font-weight: 700;
       font-size: 14px;
     }
+    
+    /* Sections internes dans les cartes Infos */
+.info-section {
+  margin-bottom: 14px;
+}
+
+.info-section:last-child {
+  margin-bottom: 0;
+}
+
+.info-section-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.info-section-title span.icon {
+  font-size: 14px;
+}
+
+.info-section-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.info-section-list li {
+  font-size: 13px;
+  color: var(--muted);
+}
   </style>
 </head>
 <body>
@@ -649,48 +681,167 @@
     </div>
   </div>
 
-  <!-- VIEW : INFOS -->
-  <div id="view-infos" class="view">
-    <div class="tab-bar">
-      <button class="tab active" onclick="switchInfosTab('envoi')">Envoi</button>
-      <button class="tab" onclick="switchInfosTab('livraison')">Livraison</button>
-      <button class="tab" onclick="switchInfosTab('meet')">Meet Up</button>
-    </div>
+<!-- VIEW : INFOS -->
+<div id="view-infos" class="view">
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchInfosTab('envoi')">Envoi</button>
+    <button class="tab" onclick="switchInfosTab('livraison')">Livraison</button>
+    <button class="tab" onclick="switchInfosTab('meet')">Meet Up</button>
+  </div>
 
-    <div id="infos-envoi">
-      <div class="card">
-        <h3>Envoi</h3>
-        <div class="info-block">
-          <div class="info-label">Zone</div>
-          <div class="info-value">France Métropolitaine (exemple)</div>
+  <!-- ONGLET ENVOI -->
+  <div id="infos-envoi">
+    <div class="card">
+      <div class="info-section">
+        <div class="info-section-title">
+          <span class="icon">📍</span>
+          Localisation
         </div>
-        <div class="info-block">
-          <div class="info-label">Délais indicatifs</div>
-          <div class="info-value">48–72h ouvrées</div>
-        </div>
+        <ul class="info-section-list">
+          <li>- France Métropolitaine</li>
+          <li>- Délai : 2-3 jours ouvrés</li>
+        </ul>
       </div>
-    </div>
 
-    <div id="infos-livraison" style="display:none;">
-      <div class="card">
-        <h3>Livraison</h3>
-        <div class="info-block">
-          <div class="info-label">Modes</div>
-          <div class="info-value">Point relais, domicile (exemple)</div>
+      <div class="info-section">
+        <div class="info-section-title">
+          <span class="icon">⬢</span>
+          Quantités Minimum
         </div>
+        <ul class="info-section-list">
+          <li>- Minimum 50€</li>
+        </ul>
       </div>
-    </div>
 
-    <div id="infos-meet" style="display:none;">
-      <div class="card">
-        <h3>Meet Up</h3>
-        <div class="info-block">
-          <div class="info-label">Lieu</div>
-          <div class="info-value">Centre-ville (exemple)</div>
+      <div class="info-section">
+        <div class="info-section-title">
+          <span class="icon">💳</span>
+          Mode de Paiement
         </div>
+        <ul class="info-section-list">
+          <li>- Cryptomonnaies (BTC, ETH, SOL)</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <div class="info-section-title">
+          <span class="icon">ℹ️</span>
+          Infos Supplémentaires
+        </div>
+        <ul class="info-section-list">
+          <li>- Suivi disponible</li>
+          <li>- Colis discret</li>
+        </ul>
       </div>
     </div>
   </div>
+
+  <!-- ONGLET LIVRAISON -->
+  <div id="infos-livraison" style="display:none;">
+    <div class="card">
+      <div class="info-section">
+        <div class="info-section-title">
+          <span class="icon">📍</span>
+          Localisation
+        </div>
+        <ul class="info-section-list">
+          <li>- Départements : 69 / 01 / 38 / 74 / 73 / 43 / 42 / 26</li>
+          <li>- Frais supplémentaires à prévoir pour les départements voisins</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <div class="info-section-title">
+          <span class="icon">⬢</span>
+          Quantités Minimum
+        </div>
+        <ul class="info-section-list">
+          <li>- Minimum 50€</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <div class="info-section-title">
+          <span class="icon">💳</span>
+          Mode de Paiement
+        </div>
+        <ul class="info-section-list">
+          <li>- Bitcoin (BTC)</li>
+          <li>- Espèces et cryptomonnaies</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <div class="info-section-title">
+          <span class="icon">🕒</span>
+          Horaires
+        </div>
+        <ul class="info-section-list">
+          <li>- 1ère tournée : 14h</li>
+          <li>- 2ème tournée : 17h</li>
+          <li>- 3ème tournée : 20h</li>
+          <li>- 4ème tournée : 22h30</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ONGLET MEET UP -->
+  <div id="infos-meet" style="display:none;">
+    <div class="card">
+      <div class="info-section">
+        <div class="info-section-title">
+          <span class="icon">📍</span>
+          Localisation
+        </div>
+        <ul class="info-section-list">
+          <li>- Lyon</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <div class="info-section-title">
+          <span class="icon">⬢</span>
+          Quantités Minimum
+        </div>
+        <ul class="info-section-list">
+          <li>- Minimum 50€</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <div class="info-section-title">
+          <span class="icon">💳</span>
+          Mode de Paiement
+        </div>
+        <ul class="info-section-list">
+          <li>- Bitcoin (BTC)</li>
+          <li>- Espèces et cryptomonnaies</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <div class="info-section-title">
+          <span class="icon">🕒</span>
+          Horaires
+        </div>
+        <ul class="info-section-list">
+          <li>- Tous les jours 14h–23h</li>
+        </ul>
+      </div>
+
+      <div class="info-section">
+        <div class="info-section-title">
+          <span class="icon">ℹ️</span>
+          Infos Supplémentaires
+        </div>
+        <ul class="info-section-list">
+          <li>- Pour plus d'infos : @contact_exemple (Telegram/Snapchat)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- VIEW : AVIS -->
   <div id="view-avis" class="view">
