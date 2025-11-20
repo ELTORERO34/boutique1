@@ -611,6 +611,112 @@
   font-size: 13px;
   color: var(--muted);
 }
+
+    /* POPUP GRAMMAGE */
+.gram-popup {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background: rgba(20,20,20,0.92);
+    backdrop-filter: blur(18px);
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
+    padding: 18px;
+    transition: 0.35s ease;
+    z-index: 999;
+}
+
+.gram-popup.active {
+    bottom: 0;
+}
+
+.gram-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.gram-title {
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.gram-close {
+    color: #888;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.gram-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.gram-option {
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    background: rgba(255,255,255,0.05);
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.gram-option.active {
+    background: #00c86f;
+    border-color: #00c86f;
+}
+
+.gram-qty {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.qty-label {
+    color: #ccc;
+    margin-bottom: 8px;
+}
+
+.qty-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 15px;
+}
+
+.qty-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    font-size: 24px;
+}
+
+.qty-value {
+    color: white;
+    font-size: 20px;
+    min-width: 30px;
+    text-align: center;
+}
+
+.btn-validate {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    background: #00c86f;
+    border-radius: 14px;
+    color: black;
+    font-weight: 700;
+    font-size: 16px;
+}
   </style>
 </head>
 <body>
@@ -662,9 +768,34 @@
     <div class="card">
       <h3>Description</h3>
       <p class="muted" id="productDesc"></p>
-      <button class="btn-primary" onclick="addToCart()">Ajouter au panier</button>
+      <button class="btn-primary" onclick="openGramPopup(currentProduct)">
+        Choisir le grammage
+      </button>
     </div>
   </div>
+  
+  <!-- POPUP SELECTION GRAMMAGE -->
+<div id="gramPopup" class="gram-popup">
+    <div class="gram-header">
+        <div class="gram-title" id="gramProductName">Sélection</div>
+        <div class="gram-close" onclick="closeGramPopup()">✕</div>
+    </div>
+
+    <div id="gramOptions" class="gram-options"></div>
+
+    <!-- SECTION QUANTITÉ -->
+    <div id="gramQuantitySection" class="gram-qty" style="display:none;">
+        <div class="qty-label" id="gramSelectedLabel">Choix sélectionné</div>
+
+        <div class="qty-box">
+            <button class="qty-btn" onclick="qtyMinus()">−</button>
+            <div class="qty-value" id="qtyValue">1</div>
+            <button class="qty-btn" onclick="qtyPlus()">+</button>
+        </div>
+
+        <button class="btn-validate" onclick="validateGramChoice()">Valider</button>
+    </div>
+</div>
 
   <!-- VIEW : PANIER -->
   <div id="view-cart" class="view">
@@ -932,104 +1063,175 @@
     "Best Sellers"
   ];
 
-  const PRODUCTS = [
-    {
-      id: 1,
-      name: "Green Leaf 01",
-      desc: "Produit d'exemple neutre (template).",
-      img: "https://images.unsplash.com/photo-1466690672306-5f92a57251cb?auto=format&fit=crop&w=600&q=80",
-      farm: "NeoFarm",
-      category: "Premium"
-    },
-    {
-      id: 2,
-      name: "Nature Pack",
-      desc: "Pack botanique de démonstration.",
-      img: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=600&q=80",
-      farm: "BioPeak",
-      category: "Mixed Pack"
-    },
-    {
-      id: 3,
-      name: "Fresh Plant",
-      desc: "Produit visuel d'exemple.",
-      img: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=600&q=80",
-      farm: "MountainPrime",
-      category: "Greenhouse"
-    },
-    {
-      id: 4,
-      name: "Leaf Boost",
-      desc: "Entrée de collection fictive.",
-      img: "https://images.unsplash.com/photo-1501004318513-b39fe3a0b112?auto=format&fit=crop&w=600&q=80",
-      farm: "FreshOrigin",
-      category: "Indoor"
-    },
-    {
-      id: 5,
-      name: "Herba 07",
-      desc: "Produit exemple neutre.",
-      img: "https://images.unsplash.com/photo-1501004318451-8915848b95cf?auto=format&fit=crop&w=600&q=80",
-      farm: "UrbanBloom",
-      category: "Botanique"
-    },
-    {
-      id: 6,
-      name: "Zen Leaf",
-      desc: "Produit démonstration.",
-      img: "https://images.unsplash.com/photo-1616509091249-e9f32d42d3ea?auto=format&fit=crop&w=600&q=80",
-      farm: "SunLeaf Co",
-      category: "Edition Limitée"
-    },
-    {
-      id: 7,
-      name: "Botanic 3",
-      desc: "Template visuel neutre.",
-      img: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=600&q=80",
-      farm: "NaturePro",
-      category: "Sélection Visuelle"
-    },
-    {
-      id: 8,
-      name: "Natural X",
-      desc: "Produit type démonstration.",
-      img: "https://images.unsplash.com/photo-1501004318677-dad9d958e0e9?auto=format&fit=crop&w=600&q=80",
-      farm: "LeafLine",
-      category: "Sélection Aromatique"
-    },
-    {
-      id: 9,
-      name: "Leafy Pro",
-      desc: "Exemple catalogué.",
-      img: "https://images.unsplash.com/photo-1466690672306-5f92a57251cb?auto=format&fit=crop&w=600&q=80",
-      farm: "EarthGrown",
-      category: "Fresh Pack"
-    },
-    {
-      id: 10,
-      name: "Fresh Mix",
-      desc: "Produit neutre de démonstration.",
-      img: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=600&q=80",
-      farm: "GreenSphere",
-      category: "Best Sellers"
-    },
-    {
-      id: 11,
-      name: "Garden 14",
-      desc: "Fiche d'exemple simple.",
-      img: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=600&q=80",
-      farm: "NeoFarm",
-      category: "Indoor"
-    },
-    {
-      id: 12,
-      name: "Plant X",
-      desc: "Item fictif (à modifier).",
-      img: "https://images.unsplash.com/photo-1616509091249-e9f32d42d3ea?auto=format&fit=crop&w=600&q=80",
-      farm: "BioPeak",
-      category: "Premium"
-    }
-  ];
+const PRODUCTS = [
+  {
+    id: 1,
+    name: "Green Leaf 01",
+    desc: "Produit d'exemple neutre, sélection botanique.",
+    img: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=600&q=80",
+    farm: "NeoFarm",
+    category: "Premium",
+    grams: [
+      { label: "3.5g", price: 25 },
+      { label: "7g",   price: 45 },
+      { label: "14g",  price: 80 }
+    ]
+  },
+
+  {
+    id: 2,
+    name: "Nature Pack",
+    desc: "Pack botanique sélection visuelle.",
+    img: "https://images.unsplash.com/photo-1484557985045-edf25e08da73?auto=format&fit=crop&w=600&q=80",
+    farm: "BioPeak",
+    category: "Mixed Pack",
+    grams: [
+      { label: "5g",  price: 32 },
+      { label: "10g", price: 59 },
+      { label: "20g", price: 110 }
+    ]
+  },
+
+  {
+    id: 3,
+    name: "Deep Bloom",
+    desc: "Texture florale dense, édition limitée.",
+    img: "https://images.unsplash.com/photo-1501004318641-68f74f7d47a1?auto=format&fit=crop&w=600&q=80",
+    farm: "MountainPrime",
+    category: "Edition Limitée",
+    grams: [
+      { label: "3g",  price: 22 },
+      { label: "6g",  price: 40 },
+      { label: "12g", price: 75 }
+    ]
+  },
+
+  {
+    id: 4,
+    name: "Fresh Origin #2",
+    desc: "Sélection fraîche premium.",
+    img: "https://images.unsplash.com/photo-1457530378978-8bac673b8062?auto=format&fit=crop&w=600&q=80",
+    farm: "FreshOrigin",
+    category: "Fresh Pack",
+    grams: [
+      { label: "5g",  price: 28 },
+      { label: "10g", price: 52 },
+      { label: "20g", price: 98 }
+    ]
+  },
+
+  {
+    id: 5,
+    name: "Urban Bloom Prime",
+    desc: "Série botanique sélection aromatique.",
+    img: "https://images.unsplash.com/photo-1466690672306-5f92a57251cb?auto=format&fit=crop&w=600&q=80",
+    farm: "UrbanBloom",
+    category: "Sélection Aromatique",
+    grams: [
+      { label: "4g",  price: 30 },
+      { label: "8g",  price: 56 },
+      { label: "16g", price: 105 }
+    ]
+  },
+
+  {
+    id: 6,
+    name: "SunLeaf Natural",
+    desc: "Édition botanique solaire.",
+    img: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=600&q=80",
+    farm: "SunLeaf Co",
+    category: "Botanique",
+    grams: [
+      { label: "3g",  price: 20 },
+      { label: "6g",  price: 38 },
+      { label: "12g", price: 70 }
+    ]
+  },
+
+  {
+    id: 7,
+    name: "NaturePro Select",
+    desc: "Sélection visuelle premium.",
+    img: "https://images.unsplash.com/photo-1501004318641-9e8e4cdf06ae?auto=format&fit=crop&w=600&q=80",
+    farm: "NaturePro",
+    category: "Sélection Visuelle",
+    grams: [
+      { label: "5g",  price: 35 },
+      { label: "10g", price: 60 },
+      { label: "20g", price: 115 }
+    ]
+  },
+
+  {
+    id: 8,
+    name: "LeafLine Pure",
+    desc: "Produit naturel haute qualité.",
+    img: "https://images.unsplash.com/photo-1438109491414-7198515b166b?auto=format&fit=crop&w=600&q=80",
+    farm: "LeafLine",
+    category: "Indoor",
+    grams: [
+      { label: "3.5g", price: 24 },
+      { label: "7g",   price: 42 },
+      { label: "14g",  price: 78 }
+    ]
+  },
+
+  {
+    id: 9,
+    name: "EarthGrown Zenith",
+    desc: "Best seller naturel revisité.",
+    img: "https://images.unsplash.com/photo-1501004318641-b39de8e27db7?auto=format&fit=crop&w=600&q=80",
+    farm: "EarthGrown",
+    category: "Best Sellers",
+    grams: [
+      { label: "4g",  price: 29 },
+      { label: "8g",  price: 55 },
+      { label: "15g", price: 108 }
+    ]
+  },
+
+  {
+    id: 10,
+    name: "GreenSphere 01",
+    desc: "Lot botanique équilibré.",
+    img: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&w=600&q=80",
+    farm: "GreenSphere",
+    category: "Greenhouse",
+    grams: [
+      { label: "5g",  price: 27 },
+      { label: "10g", price: 50 },
+      { label: "20g", price: 95 }
+    ]
+  },
+
+  {
+    id: 11,
+    name: "Origin Flora",
+    desc: "Sélection nature polyvalente.",
+    img: "https://images.unsplash.com/photo-1457530378978-8bac673b8062?auto=format&fit=crop&w=600&q=80",
+    farm: "FreshOrigin",
+    category: "Botanique",
+    grams: [
+      { label: "5g", price: 30 },
+      { label: "10g", price: 57 },
+      { label: "18g", price: 105 }
+    ]
+  },
+
+  {
+    id: 12,
+    name: "Bloom Edition",
+    desc: "Édition limitée sélection visuelle.",
+    img: "https://images.unsplash.com/photo-1484557985045-edf25e08da73?auto=format&fit=crop&w=600&q=80",
+    farm: "MountainPrime",
+    category: "Edition Limitée",
+    grams: [
+      { label: "4g",  price: 28 },
+      { label: "8g",  price: 53 },
+      { label: "15g", price: 100 }
+    ]
+  }
+];
 
   /* ------------------------------
      ETAT FILTRES
@@ -1337,6 +1539,67 @@
   ------------------------------ */
   renderProducts();
   renderCart();
+  
+      let currentProduct = null;
+let selectedGram = null;
+let qty = 1;
+
+/* OUVRIR LE POPUP DE GRAMMAGE */
+function openGramPopup(product) {
+    currentProduct = product;
+    selectedGram = null;
+    qty = 1;
+
+    document.getElementById("gramProductName").textContent = product.name;
+    document.getElementById("qtyValue").textContent = qty;
+
+    const container = document.getElementById("gramOptions");
+    container.innerHTML = "";
+
+    product.grams.forEach(g => {
+        const btn = document.createElement("div");
+        btn.className = "gram-option";
+        btn.textContent = `${g.price}€ — ${g.label}`;
+        btn.onclick = () => selectGram(g, btn);
+        container.appendChild(btn);
+    });
+
+    document.getElementById("gramQuantitySection").style.display = "none";
+    document.getElementById("gramPopup").classList.add("active");
+}
+
+/* FERMER */
+function closeGramPopup() {
+    document.getElementById("gramPopup").classList.remove("active");
+}
+
+/* SELECTIONNER LE GRAMMAGE */
+function selectGram(gram, btn) {
+    selectedGram = gram;
+
+    document.querySelectorAll(".gram-option").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    document.getElementById("gramSelectedLabel").textContent = `${gram.price}€ — ${gram.label}`;
+    document.getElementById("gramQuantitySection").style.display = "block";
+}
+
+/* QUANTITÉ */
+function qtyPlus() { qty++; document.getElementById("qtyValue").textContent = qty; }
+function qtyMinus() { if(qty > 1){ qty--; document.getElementById("qtyValue").textContent = qty; } }
+
+/* VALIDER */
+function validateGramChoice() {
+    if (!selectedGram) return;
+
+    alert(
+        `AJOUTÉ : ${currentProduct.name}\n` +
+        `${selectedGram.label} — ${selectedGram.price}€\n` +
+        `Quantité : ${qty}`
+    );
+
+    closeGramPopup();
+}
 </script>
 </body>
 </html>
